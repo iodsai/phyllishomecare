@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phyllis Home Care | Compassionate In-Home Care for Your Loved Ones</title>
+    <meta name="description" content="Phyllis Home Care provides trusted, personalized in-home care services for seniors and adults. Companionship, personal care, and specialized support in the comfort of home.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                <span class="logo-icon">❦</span>
+                <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
+            </a>
+            <ul class="nav__menu" id="nav-menu">
+                <li><a href="#services" class="nav__link">Services</a></li>
+                <li><a href="#about" class="nav__link">About Us</a></li>
+                <li><a href="#process" class="nav__link">How It Works</a></li>
+                <li><a href="#testimonials" class="nav__link">Testimonials</a></li>
+                <li><a href="careers.html" class="nav__link">Careers</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+                <a href="tel:+1-800-555-0123" class="nav__phone">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    (800) 555-0123
+                </a>
+                <a href="apply.html" class="btn btn--primary nav__cta">Request Care</a>
+            </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero__bg">
+            <div class="hero__gradient"></div>
+        </div>
+        <div class="container hero__container">
+            <div class="hero__content">
+                <span class="hero__badge">Trusted Care Since 2010</span>
+                <h1 class="hero__title">
+                    Compassionate Care,<br>
+                    <span class="text-accent">Right at Home</span>
+                </h1>
+                <p class="hero__subtitle">
+                    We provide personalized in-home care that helps your loved ones 
+                    live safely, comfortably, and with dignity in the place they know best.
+                </p>
+                <div class="hero__actions">
+                    <a href="apply.html" class="btn btn--primary btn--lg">
+                        Get Started Today
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#services" class="btn btn--outline btn--lg">
+                        Explore Services
+                    </a>
+                </div>
+                <div class="hero__trust">
+                    <div class="trust-item">
+                        <span class="trust-number">15+</span>
+                        <span class="trust-label">Years of Care</span>
+                    </div>
+                    <div class="trust-divider"></div>
+                    <div class="trust-item">
+                        <span class="trust-number">5,000+</span>
+                        <span class="trust-label">Families Served</span>
+                    </div>
+                    <div class="trust-divider"></div>
+                    <div class="trust-item">
+                        <span class="trust-number">24/7</span>
+                        <span class="trust-label">Support Available</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__image">
+                <div class="hero__image-frame">
+                    <div class="hero__image-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span>Caring for families with love</span>
+                    </div>
+                </div>
+                <div class="hero__floating-card">
+                    <div class="floating-card__icon">★</div>
+                    <div class="floating-card__content">
+                        <span class="floating-card__rating">4.9/5</span>
+                        <span class="floating-card__text">Family Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__scroll">
+            <span>Scroll to explore</span>
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">Care Tailored to Your Needs</h2>
+                <p class="section-subtitle">
+                    From companionship to specialized care, we provide comprehensive 
+                    support that adapts to your family's unique situation.
+                </p>
+            </div>
+            <div class="services__grid">
+                <article class="service-card">
+                    <div class="service-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Companion Care</h3>
+                    <p class="service-card__desc">
+                        Meaningful conversation, engaging activities, and genuine friendship 
+                        that brightens every day and combats loneliness.
+                    </p>
+                    <ul class="service-card__features">
+                        <li>Social engagement & conversation</li>
+                        <li>Light meal preparation</li>
+                        <li>Errands & transportation</li>
+                        <li>Hobby & activity support</li>
+                    </ul>
+                    <a href="services.html#companion" class="service-card__link">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <article class="service-card service-card--featured">
+                    <div class="service-card__badge">Most Requested</div>
+                    <div class="service-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Personal Care</h3>
+                    <p class="service-card__desc">
+                        Dignified assistance with daily activities, helping maintain 
+                        independence while ensuring safety and comfort.
+                    </p>
+                    <ul class="service-card__features">
+                        <li>Bathing & grooming assistance</li>
+                        <li>Dressing & mobility support</li>
+                        <li>Medication reminders</li>
+                        <li>Incontinence care</li>
+                    </ul>
+                    <a href="services.html#personal" class="service-card__link">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">24-Hour Care</h3>
+                    <p class="service-card__desc">
+                        Round-the-clock support for those who need continuous assistance, 
+                        providing peace of mind for the whole family.
+                    </p>
+                    <ul class="service-card__features">
+                        <li>Live-in caregiver options</li>
+                        <li>Overnight supervision</li>
+                        <li>Emergency response</li>
+                        <li>Seamless shift transitions</li>
+                    </ul>
+                    <a href="services.html#fulltime" class="service-card__link">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Memory Care</h3>
+                    <p class="service-card__desc">
+                        Specialized support for those with Alzheimer's or dementia, 
+                        delivered with patience, understanding, and expertise.
+                    </p>
+                    <ul class="service-card__features">
+                        <li>Cognitive stimulation activities</li>
+                        <li>Safety monitoring</li>
+                        <li>Routine maintenance</li>
+                        <li>Family education & support</li>
+                    </ul>
+                    <a href="services.html#memory" class="service-card__link">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Homemaker Services</h3>
+                    <p class="service-card__desc">
+                        Keep the home safe, clean, and comfortable with help for 
+                        household tasks that may have become challenging.
+                    </p>
+                    <ul class="service-card__features">
+                        <li>Light housekeeping</li>
+                        <li>Laundry & linens</li>
+                        <li>Grocery shopping</li>
+                        <li>Meal planning & prep</li>
+                    </ul>
+                    <a href="services.html#homemaker" class="service-card__link">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                            <line x1="6" y1="1" x2="6" y2="4"/>
+                            <line x1="10" y1="1" x2="10" y2="4"/>
+                            <line x1="14" y1="1" x2="14" y2="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-card__title">Respite Care</h3>
+                    <p class="service-card__desc">
+                        Give family caregivers a well-deserved break while ensuring 
+                        your loved one receives the same quality care.
+                    </p>
+                    <ul class="service-card__features">
+                        <li>Flexible scheduling</li>
+                        <li>Short-term or recurring</li>
+                        <li>Vacation coverage</li>
+                        <li>Emergency backup care</li>
+                    </ul>
+                    <a href="services.html#respite" class="service-card__link">
+                        Learn more
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about__container">
+            <div class="about__image">
+                <div class="about__image-main">
+                    <div class="image-placeholder">
+                        <span>Our caring team</span>
+                    </div>
+                </div>
+                <div class="about__image-accent">
+                    <div class="image-placeholder image-placeholder--small">
+                        <span>15+ years</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about__content">
+                <span class="section-tag">About Phyllis Home Care</span>
+                <h2 class="section-title">Founded on Love,<br>Built on Trust</h2>
+                <p class="about__text">
+                    Phyllis Home Care was born from a simple belief: everyone deserves 
+                    to age with dignity in the comfort of their own home. Named after 
+                    founder Sarah Mitchell's grandmother Phyllis, whose spirit of 
+                    compassion inspires everything we do.
+                </p>
+                <p class="about__text">
+                    Today, we're proud to serve thousands of families with the same 
+                    warmth and dedication that started it all. Our caregivers aren't 
+                    just employees—they're carefully selected individuals who share 
+                    our passion for making a difference.
+                </p>
+                <div class="about__values">
+                    <div class="value-item">
+                        <div class="value-icon">♡</div>
+                        <div class="value-content">
+                            <h4>Compassion First</h4>
+                            <p>Every interaction guided by genuine care and empathy</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">✓</div>
+                        <div class="value-content">
+                            <h4>Trusted & Vetted</h4>
+                            <p>Rigorous screening, background checks, and ongoing training</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">⚡</div>
+                        <div class="value-content">
+                            <h4>Always Available</h4>
+                            <p>24/7 support because care needs don't follow a schedule</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="about.html" class="btn btn--primary">
+                    Our Full Story
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header section-header--center">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">Getting Started is Simple</h2>
+                <p class="section-subtitle">
+                    From your first call to the first day of care, we make the 
+                    process smooth and stress-free.
+                </p>
+            </div>
+            <div class="process__timeline">
+                <div class="process__step">
+                    <div class="step__number">01</div>
+                    <div class="step__content">
+                        <h3 class="step__title">Free Consultation</h3>
+                        <p class="step__desc">
+                            We'll discuss your loved one's needs, preferences, and schedule. 
+                            No pressure, no obligation—just a friendly conversation.
+                        </p>
+                    </div>
+                </div>
+                <div class="process__step">
+                    <div class="step__number">02</div>
+                    <div class="step__content">
+                        <h3 class="step__title">Personalized Care Plan</h3>
+                        <p class="step__desc">
+                            Our care coordinator creates a customized plan that addresses 
+                            specific needs and fits your family's lifestyle.
+                        </p>
+                    </div>
+                </div>
+                <div class="process__step">
+                    <div class="step__number">03</div>
+                    <div class="step__content">
+                        <h3 class="step__title">Caregiver Matching</h3>
+                        <p class="step__desc">
+                            We carefully match your loved one with a caregiver whose 
+                            skills, personality, and availability align perfectly.
+                        </p>
+                    </div>
+                </div>
+                <div class="process__step">
+                    <div class="step__number">04</div>
+                    <div class="step__content">
+                        <h3 class="step__title">Care Begins</h3>
+                        <p class="step__desc">
+                            Your caregiver arrives, ready to provide exceptional care. 
+                            We check in regularly and adjust as needs evolve.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="process__cta">
+                <a href="apply.html" class="btn btn--primary btn--lg">
+                    Request Your Free Consultation
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header section-header--center">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">Families Trust Us</h2>
+            </div>
+            <div class="testimonials__grid">
+                <article class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">
+                        "Phyllis Home Care has been a blessing for our family. The 
+                        caregiver they matched with my mother is wonderful—patient, 
+                        kind, and truly caring. Mom looks forward to her visits."
+                    </blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <span class="author-name">Margaret J.</span>
+                            <span class="author-relation">Daughter of Client</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">
+                        "After Dad's stroke, we didn't know where to turn. Phyllis 
+                        Home Care guided us through everything with such compassion. 
+                        Two years later, we couldn't imagine life without them."
+                    </blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <span class="author-name">Robert K.</span>
+                            <span class="author-relation">Son of Client</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <blockquote class="testimonial-card__quote">
+                        "The respite care service gave me the break I desperately 
+                        needed. Knowing my husband was in good hands let me truly 
+                        relax for the first time in months."
+                    </blockquote>
+                    <div class="testimonial-card__author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <span class="author-name">Susan L.</span>
+                            <span class="author-relation">Spouse & Caregiver</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container cta__container">
+            <div class="cta__content">
+                <h2 class="cta__title">Ready to Explore Your Care Options?</h2>
+                <p class="cta__subtitle">
+                    Schedule a free, no-obligation consultation. We'll answer your 
+                    questions and help you understand how we can support your family.
+                </p>
+                <div class="cta__actions">
+                    <a href="apply.html" class="btn btn--white btn--lg">
+                        Request Care Online
+                    </a>
+                    <a href="tel:+1-800-555-0123" class="btn btn--outline-white btn--lg">
+                        Call (800) 555-0123
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container contact__container">
+            <div class="contact__info">
+                <span class="section-tag">Contact Us</span>
+                <h2 class="section-title">We're Here to Help</h2>
+                <p class="contact__text">
+                    Have questions? Want to learn more? Reach out anytime—our 
+                    team is available 24/7 to assist you.
+                </p>
+                <div class="contact__methods">
+                    <div class="contact-method">
+                        <div class="contact-method__icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-method__content">
+                            <span class="contact-method__label">Call Us 24/7</span>
+                            <a href="tel:+1-800-555-0123" class="contact-method__value">(800) 555-0123</a>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-method__icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-method__content">
+                            <span class="contact-method__label">Email Us</span>
+                            <a href="mailto:care@phyllishomecare.com" class="contact-method__value">care@phyllishomecare.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-method__icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-method__content">
+                            <span class="contact-method__label">Visit Us</span>
+                            <span class="contact-method__value">123 Care Street, Suite 100<br>Hometown, ST 12345</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__form-wrapper">
+                <form class="contact-form" id="contact-form">
+                    <h3 class="contact-form__title">Send Us a Message</h3>
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="Full name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="email" required placeholder="you@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone</label>
+                            <input type="tel" id="contact-phone" name="phone" placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">How Can We Help?</label>
+                        <textarea id="contact-message" name="message" rows="4" required placeholder="Tell us about your situation..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">
+                        Send Message
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__main">
+                <div class="footer__brand">
+                    <a href="index.html" class="footer__logo">
+                        <span class="logo-icon">❦</span>
+                        <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
+                    </a>
+                    <p class="footer__tagline">
+                        Compassionate in-home care for your loved ones. 
+                        Serving families with dignity and respect since 2010.
+                    </p>
+                    <div class="footer__social">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Services</h4>
+                        <ul class="footer__list">
+                            <li><a href="services.html#companion">Companion Care</a></li>
+                            <li><a href="services.html#personal">Personal Care</a></li>
+                            <li><a href="services.html#memory">Memory Care</a></li>
+                            <li><a href="services.html#fulltime">24-Hour Care</a></li>
+                            <li><a href="services.html#respite">Respite Care</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Company</h4>
+                        <ul class="footer__list">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="resources.html">Resources</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Get Started</h4>
+                        <ul class="footer__list">
+                            <li><a href="apply.html">Request Care</a></li>
+                            <li><a href="careers.html#apply">Apply as Caregiver</a></li>
+                            <li><a href="tel:+1-800-555-0123">Call (800) 555-0123</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    © 2024 Phyllis Home Care. All rights reserved.
+                </p>
+                <div class="footer__legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="accessibility.html">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

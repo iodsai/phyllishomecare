@@ -1,0 +1,515 @@
+/* =====================================================
+   PHYLLIS HOME CARE - ADDITIONAL PAGE STYLES
+   ===================================================== */
+
+/* =====================================================
+   CAREERS PAGE STYLES
+   ===================================================== */
+
+/* Careers Hero */
+.careers-hero {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.careers-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(196, 169, 98, 0.1) 0%, transparent 60%);
+}
+
+.careers-hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.careers-hero__content {
+    max-width: 520px;
+}
+
+.careers-hero__badge {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.15);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-lg);
+}
+
+.careers-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-white);
+    margin-bottom: var(--space-lg);
+}
+
+.careers-hero__subtitle {
+    font-size: 1.125rem;
+    opacity: 0.9;
+    margin-bottom: var(--space-xl);
+}
+
+.careers-hero__stats {
+    display: flex;
+    gap: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.careers-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.careers-stat__number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.careers-stat__label {
+    font-size: 0.8125rem;
+    opacity: 0.8;
+}
+
+/* Why Join Section */
+.why-join {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+}
+
+.benefit-card {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.benefit-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+}
+
+.benefit-card__title {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-sm);
+}
+
+.benefit-card__desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+/* Requirements Section */
+.requirements {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-cream);
+}
+
+.requirements__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+}
+
+.requirements-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.requirement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+}
+
+.requirement-item__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(45, 90, 74, 0.1);
+    color: var(--color-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+    font-weight: 600;
+}
+
+.requirement-item__text {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+/* Caregiver Application Form */
+.caregiver-apply {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.caregiver-apply__container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.caregiver-form {
+    background: var(--color-bg);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+}
+
+.caregiver-form__title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.caregiver-form .form-grid {
+    gap: var(--space-lg);
+}
+
+/* File Upload */
+.file-upload {
+    position: relative;
+}
+
+.file-upload__input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload__label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-xl);
+    background: var(--color-white);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.file-upload__label:hover {
+    border-color: var(--color-primary);
+    background: rgba(45, 90, 74, 0.02);
+}
+
+.file-upload__icon {
+    color: var(--color-primary);
+}
+
+.file-upload__text {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+.file-upload__hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .careers-hero__container {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .requirements__container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .careers-hero__stats {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+}
+
+/* =====================================================
+   SERVICES PAGE STYLES
+   ===================================================== */
+
+.services-hero {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-2xl);
+    background: var(--color-bg-cream);
+    text-align: center;
+}
+
+.services-hero__title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: var(--space-md);
+}
+
+.services-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Service Detail Section */
+.service-detail {
+    padding: var(--space-4xl) 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.service-detail:nth-child(even) {
+    background: var(--color-bg-cream);
+}
+
+.service-detail__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.service-detail:nth-child(even) .service-detail__container {
+    direction: rtl;
+}
+
+.service-detail:nth-child(even) .service-detail__content {
+    direction: ltr;
+}
+
+.service-detail:nth-child(even) .service-detail__image {
+    direction: ltr;
+}
+
+.service-detail__image {
+    aspect-ratio: 4/3;
+    background: var(--color-bg-warm);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+}
+
+.service-detail__title {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-md);
+}
+
+.service-detail__desc {
+    font-size: 1.0625rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-xl);
+}
+
+.service-detail__features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.service-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+}
+
+.service-feature__icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.service-feature__text {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+@media (max-width: 1024px) {
+    .service-detail__container,
+    .service-detail:nth-child(even) .service-detail__container {
+        grid-template-columns: 1fr;
+        direction: ltr;
+    }
+    
+    .service-detail__features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================
+   ABOUT PAGE STYLES
+   ===================================================== */
+
+.about-hero {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    background: var(--color-bg-cream);
+}
+
+.about-hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.about-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: var(--space-lg);
+}
+
+.about-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+}
+
+.about-hero__image {
+    aspect-ratio: 4/3;
+    background: var(--color-bg-warm);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+}
+
+/* Story Section */
+.story-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
+    line-height: 1.8;
+}
+
+.story-quote {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--color-primary);
+    padding: var(--space-xl);
+    border-left: 4px solid var(--color-accent);
+    margin: var(--space-2xl) 0;
+    background: var(--color-bg-cream);
+}
+
+/* Team Section */
+.team-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-cream);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+}
+
+.team-card {
+    text-align: center;
+}
+
+.team-card__image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--color-bg-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    border: 1px solid var(--color-border);
+}
+
+.team-card__name {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-xs);
+}
+
+.team-card__role {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.team-card__bio {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+@media (max-width: 1024px) {
+    .about-hero__container {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}

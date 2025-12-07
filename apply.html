@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Care | Phyllis Home Care</title>
+    <meta name="description" content="Request a free, no-obligation consultation for in-home care services. Tell us about your needs and we'll create a personalized care plan.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/apply.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                <span class="logo-icon">❦</span>
+                <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
+            </a>
+            <ul class="nav__menu" id="nav-menu">
+                <li><a href="index.html#services" class="nav__link">Services</a></li>
+                <li><a href="index.html#about" class="nav__link">About Us</a></li>
+                <li><a href="index.html#process" class="nav__link">How It Works</a></li>
+                <li><a href="index.html#testimonials" class="nav__link">Testimonials</a></li>
+                <li><a href="careers.html" class="nav__link">Careers</a></li>
+                <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+                <a href="tel:+1-800-555-0123" class="nav__phone">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    (800) 555-0123
+                </a>
+                <a href="apply.html" class="btn btn--primary nav__cta">Request Care</a>
+            </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="apply-hero">
+        <div class="container">
+            <h1 class="apply-hero__title">Request Care Services</h1>
+            <p class="apply-hero__subtitle">
+                Fill out this simple form and we'll contact you within 24 hours 
+                for a free, no-obligation consultation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="apply-section">
+        <div class="container apply-container">
+            <div class="apply-form-wrapper">
+                <!-- Progress Bar -->
+                <div class="form-progress">
+                    <div class="progress-step active">
+                        <span class="progress-step__number">1</span>
+                        <span class="progress-step__text">Contact Info</span>
+                    </div>
+                    <div class="progress-step">
+                        <span class="progress-step__number">2</span>
+                        <span class="progress-step__text">Care Needs</span>
+                    </div>
+                    <div class="progress-step">
+                        <span class="progress-step__number">3</span>
+                        <span class="progress-step__text">Schedule</span>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form id="apply-form" class="apply-form">
+                    <!-- Step 1: Contact Information -->
+                    <div class="form-section active" data-step="1">
+                        <h3 class="form-section__title">Contact Information</h3>
+                        <p class="form-section__desc">Tell us about yourself so we can reach you.</p>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="first-name">First Name <span class="required-star">*</span></label>
+                                <input type="text" id="first-name" name="firstName" required placeholder="Your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name <span class="required-star">*</span></label>
+                                <input type="text" id="last-name" name="lastName" required placeholder="Your last name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required-star">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="you@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required-star">*</span></label>
+                                <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555">
+                            </div>
+                            <div class="form-group form-group--full">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" placeholder="Street address where care is needed">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="City">
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code</label>
+                                <input type="text" id="zip" name="zip" placeholder="12345">
+                            </div>
+                            <div class="form-group form-group--full">
+                                <label for="relationship">Your Relationship to Care Recipient</label>
+                                <select id="relationship" name="relationship">
+                                    <option value="">Select relationship...</option>
+                                    <option value="self">I am the person needing care</option>
+                                    <option value="child">Son/Daughter</option>
+                                    <option value="spouse">Spouse/Partner</option>
+                                    <option value="sibling">Sibling</option>
+                                    <option value="friend">Friend</option>
+                                    <option value="professional">Healthcare Professional</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <div></div>
+                            <button type="button" class="btn btn--primary" data-action="next">
+                                Continue
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Care Needs -->
+                    <div class="form-section" data-step="2">
+                        <h3 class="form-section__title">Care Needs</h3>
+                        <p class="form-section__desc">Help us understand what type of care would be most helpful.</p>
+                        
+                        <label class="form-group__label">What services are you interested in?</label>
+                        <div class="service-options">
+                            <div class="service-option">
+                                <input type="checkbox" id="service-companion" name="services" value="companion">
+                                <label for="service-companion">
+                                    <span class="service-option__icon">👥</span>
+                                    <span class="service-option__title">Companion Care</span>
+                                    <span class="service-option__desc">Social engagement & activities</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="service-personal" name="services" value="personal">
+                                <label for="service-personal">
+                                    <span class="service-option__icon">💝</span>
+                                    <span class="service-option__title">Personal Care</span>
+                                    <span class="service-option__desc">Bathing, dressing, mobility</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="service-memory" name="services" value="memory">
+                                <label for="service-memory">
+                                    <span class="service-option__icon">🧠</span>
+                                    <span class="service-option__title">Memory Care</span>
+                                    <span class="service-option__desc">Alzheimer's & dementia support</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="service-homemaker" name="services" value="homemaker">
+                                <label for="service-homemaker">
+                                    <span class="service-option__icon">🏠</span>
+                                    <span class="service-option__title">Homemaker</span>
+                                    <span class="service-option__desc">Housekeeping, meals, errands</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="service-24hour" name="services" value="24hour">
+                                <label for="service-24hour">
+                                    <span class="service-option__icon">🕐</span>
+                                    <span class="service-option__title">24-Hour Care</span>
+                                    <span class="service-option__desc">Round-the-clock support</span>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="service-respite" name="services" value="respite">
+                                <label for="service-respite">
+                                    <span class="service-option__icon">☕</span>
+                                    <span class="service-option__title">Respite Care</span>
+                                    <span class="service-option__desc">Temporary family relief</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid form-grid--single">
+                            <div class="form-group">
+                                <label for="care-recipient-age">Age of Care Recipient</label>
+                                <select id="care-recipient-age" name="careRecipientAge">
+                                    <option value="">Select age range...</option>
+                                    <option value="under-65">Under 65</option>
+                                    <option value="65-74">65-74</option>
+                                    <option value="75-84">75-84</option>
+                                    <option value="85+">85+</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="conditions">Any specific health conditions we should know about?</label>
+                                <textarea id="conditions" name="conditions" rows="3" placeholder="E.g., diabetes, mobility issues, memory concerns..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="additional-needs">Additional needs or requests</label>
+                                <textarea id="additional-needs" name="additionalNeeds" rows="3" placeholder="Any specific requirements, preferences, or questions..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn--secondary" data-action="prev">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                Back
+                            </button>
+                            <button type="button" class="btn btn--primary" data-action="next">
+                                Continue
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Schedule -->
+                    <div class="form-section" data-step="3">
+                        <h3 class="form-section__title">Schedule & Preferences</h3>
+                        <p class="form-section__desc">Let us know when you'd like care to begin and your scheduling preferences.</p>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="start-date">When would you like care to start?</label>
+                                <select id="start-date" name="startDate">
+                                    <option value="">Select timeframe...</option>
+                                    <option value="asap">As soon as possible</option>
+                                    <option value="1-week">Within 1 week</option>
+                                    <option value="2-weeks">Within 2 weeks</option>
+                                    <option value="1-month">Within 1 month</option>
+                                    <option value="just-exploring">Just exploring options</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hours-per-week">Estimated hours per week</label>
+                                <select id="hours-per-week" name="hoursPerWeek">
+                                    <option value="">Select hours...</option>
+                                    <option value="1-10">1-10 hours</option>
+                                    <option value="10-20">10-20 hours</option>
+                                    <option value="20-40">20-40 hours</option>
+                                    <option value="40+">40+ hours (full-time)</option>
+                                    <option value="live-in">Live-in care</option>
+                                    <option value="unsure">Not sure yet</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <label class="form-group__label">Preferred days of care (select all that apply)</label>
+                        <div class="schedule-grid">
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-mon" name="days" value="monday">
+                                <label for="day-mon">Mon</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-tue" name="days" value="tuesday">
+                                <label for="day-tue">Tue</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-wed" name="days" value="wednesday">
+                                <label for="day-wed">Wed</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-thu" name="days" value="thursday">
+                                <label for="day-thu">Thu</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-fri" name="days" value="friday">
+                                <label for="day-fri">Fri</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-sat" name="days" value="saturday">
+                                <label for="day-sat">Sat</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-sun" name="days" value="sunday">
+                                <label for="day-sun">Sun</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="day-flexible" name="days" value="flexible">
+                                <label for="day-flexible">Flexible</label>
+                            </div>
+                        </div>
+                        
+                        <label class="form-group__label">Preferred time of day</label>
+                        <div class="schedule-grid">
+                            <div class="schedule-option">
+                                <input type="checkbox" id="time-morning" name="times" value="morning">
+                                <label for="time-morning">Morning</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="time-afternoon" name="times" value="afternoon">
+                                <label for="time-afternoon">Afternoon</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="time-evening" name="times" value="evening">
+                                <label for="time-evening">Evening</label>
+                            </div>
+                            <div class="schedule-option">
+                                <input type="checkbox" id="time-overnight" name="times" value="overnight">
+                                <label for="time-overnight">Overnight</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-grid form-grid--single">
+                            <div class="form-group">
+                                <label for="how-heard">How did you hear about us?</label>
+                                <select id="how-heard" name="howHeard">
+                                    <option value="">Select...</option>
+                                    <option value="google">Google Search</option>
+                                    <option value="referral">Friend/Family Referral</option>
+                                    <option value="doctor">Doctor/Healthcare Provider</option>
+                                    <option value="social">Social Media</option>
+                                    <option value="community">Community Event</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--checkbox">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <label for="consent">
+                                    I agree to be contacted by Phyllis Home Care regarding my care inquiry. 
+                                    I have read and agree to the <a href="privacy.html">Privacy Policy</a>. <span class="required-star">*</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn--secondary" data-action="prev">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                Back
+                            </button>
+                            <button type="submit" class="btn btn--primary">
+                                Submit Request
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="form-success">
+                    <div class="form-success__icon">✓</div>
+                    <h3 class="form-success__title">Thank You!</h3>
+                    <p class="form-success__message">
+                        Your care request has been received. A member of our care team 
+                        will contact you within 24 hours to schedule your free consultation.
+                    </p>
+                    <a href="index.html" class="btn btn--primary">Return Home</a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="apply-sidebar">
+                <div class="sidebar-card">
+                    <h4 class="sidebar-card__title">
+                        <span class="sidebar-card__icon">📞</span>
+                        Prefer to Talk?
+                    </h4>
+                    <p>Our care coordinators are available 24/7 to answer your questions.</p>
+                    <a href="tel:+1-800-555-0123" class="sidebar-card__phone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        (800) 555-0123
+                    </a>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h4 class="sidebar-card__title">
+                        <span class="sidebar-card__icon">✨</span>
+                        Why Choose Us
+                    </h4>
+                    <div class="sidebar-benefits">
+                        <div class="sidebar-benefit">
+                            <span class="sidebar-benefit__icon">✓</span>
+                            <span>Free, no-obligation consultation</span>
+                        </div>
+                        <div class="sidebar-benefit">
+                            <span class="sidebar-benefit__icon">✓</span>
+                            <span>Carefully matched caregivers</span>
+                        </div>
+                        <div class="sidebar-benefit">
+                            <span class="sidebar-benefit__icon">✓</span>
+                            <span>Flexible scheduling options</span>
+                        </div>
+                        <div class="sidebar-benefit">
+                            <span class="sidebar-benefit__icon">✓</span>
+                            <span>Screened & trained professionals</span>
+                        </div>
+                        <div class="sidebar-benefit">
+                            <span class="sidebar-benefit__icon">✓</span>
+                            <span>24/7 support available</span>
+                        </div>
+                        <div class="sidebar-benefit">
+                            <span class="sidebar-benefit__icon">✓</span>
+                            <span>Personalized care plans</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__main">
+                <div class="footer__brand">
+                    <a href="index.html" class="footer__logo">
+                        <span class="logo-icon">❦</span>
+                        <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
+                    </a>
+                    <p class="footer__tagline">
+                        Compassionate in-home care for your loved ones. 
+                        Serving families with dignity and respect since 2010.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Services</h4>
+                        <ul class="footer__list">
+                            <li><a href="services.html#companion">Companion Care</a></li>
+                            <li><a href="services.html#personal">Personal Care</a></li>
+                            <li><a href="services.html#memory">Memory Care</a></li>
+                            <li><a href="services.html#fulltime">24-Hour Care</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Company</h4>
+                        <ul class="footer__list">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4 class="footer__heading">Get Started</h4>
+                        <ul class="footer__list">
+                            <li><a href="apply.html">Request Care</a></li>
+                            <li><a href="careers.html#apply">Apply as Caregiver</a></li>
+                            <li><a href="tel:+1-800-555-0123">(800) 555-0123</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 Phyllis Home Care. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+/* =====================================================
+   PHYLLIS HOME CARE - APPLY PAGE STYLES
+   ===================================================== */
+
+/* Apply Hero */
+.apply-hero {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-2xl);
+    background: var(--color-bg-cream);
+    text-align: center;
+}
+
+.apply-hero__title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: var(--space-md);
+}
+
+.apply-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Application Form Section */
+.apply-section {
+    padding: var(--space-3xl) 0 var(--space-4xl);
+}
+
+.apply-container {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+/* Main Form */
+.apply-form-wrapper {
+    background: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.form-progress {
+    display: flex;
+    background: var(--color-bg-warm);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.progress-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: all var(--transition-fast);
+}
+
+.progress-step.active {
+    background: var(--color-white);
+    color: var(--color-primary);
+}
+
+.progress-step.completed {
+    color: var(--color-primary);
+}
+
+.progress-step__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--color-border);
+    color: var(--color-text-muted);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.progress-step.active .progress-step__number {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.progress-step.completed .progress-step__number {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Form Content */
+.apply-form {
+    padding: var(--space-xl);
+}
+
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+}
+
+.form-section__title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+}
+
+.form-section__desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-xl);
+}
+
+/* Form Elements */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+.form-grid--single {
+    grid-template-columns: 1fr;
+}
+
+.form-group--full {
+    grid-column: span 2;
+}
+
+.form-group--checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+}
+
+.form-group--checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--color-primary);
+}
+
+.form-group--checkbox label {
+    margin-bottom: 0;
+    font-size: 0.875rem;
+}
+
+.required-star {
+    color: #c0392b;
+}
+
+.form-group__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+}
+
+/* Service Options */
+.service-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.service-option {
+    position: relative;
+}
+
+.service-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.service-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.service-option label:hover {
+    border-color: var(--color-primary);
+}
+
+.service-option input:checked + label {
+    border-color: var(--color-primary);
+    background: rgba(45, 90, 74, 0.05);
+}
+
+.service-option__icon {
+    font-size: 1.5rem;
+}
+
+.service-option__title {
+    font-weight: 600;
+    font-size: 0.9375rem;
+}
+
+.service-option__desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+/* Schedule Preferences */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.schedule-option {
+    position: relative;
+}
+
+.schedule-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.schedule-option label {
+    display: block;
+    padding: var(--space-md);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.8125rem;
+    transition: all var(--transition-fast);
+}
+
+.schedule-option label:hover {
+    border-color: var(--color-primary);
+}
+
+.schedule-option input:checked + label {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-top: var(--space-xl);
+    margin-top: var(--space-xl);
+    border-top: 1px solid var(--color-border-light);
+}
+
+.btn--secondary {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover {
+    background: var(--color-bg-warm);
+}
+
+/* Sidebar */
+.apply-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-lg);
+}
+
+.sidebar-card__title {
+    font-size: 1rem;
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.sidebar-card__icon {
+    color: var(--color-accent);
+}
+
+.sidebar-card p {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+}
+
+.sidebar-card__phone {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Why Choose Us */
+.sidebar-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.sidebar-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+}
+
+.sidebar-benefit__icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Success Message */
+.form-success {
+    display: none;
+    text-align: center;
+    padding: var(--space-3xl) var(--space-xl);
+}
+
+.form-success.active {
+    display: block;
+}
+
+.form-success__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(45, 90, 74, 0.1);
+    border-radius: 50%;
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: var(--space-lg);
+}
+
+.form-success__title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+}
+
+.form-success__message {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-xl);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Error State */
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #c0392b;
+    background: rgba(192, 57, 43, 0.02);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .apply-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .apply-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group--full {
+        grid-column: span 1;
+    }
+    
+    .service-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .schedule-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .progress-step__text {
+        display: none;
+    }
+}
