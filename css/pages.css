@@ -6,6 +6,261 @@
    CAREERS PAGE STYLES
    ===================================================== */
 
+/* --------------------
+   SERVICES PAGE
+-------------------- */
+.services-hero {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+}
+
+.services-hero__container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-2xl);
+    align-items: center;
+}
+
+.services-hero__title {
+    font-size: clamp(2.3rem, 5vw, 3.2rem);
+    margin-bottom: var(--space-lg);
+}
+
+.services-hero__subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: var(--space-xl);
+    max-width: 640px;
+}
+
+.services-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.services-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+}
+
+.services-hero__meta div {
+    background: rgba(255,255,255,0.08);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.services-hero__note {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    color: #f5f7f6;
+    font-size: 0.98rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+}
+
+.services-hero__note span {
+    display: block;
+    margin-top: var(--space-sm);
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+}
+
+.services-grid {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg);
+}
+
+.service-card__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-xl);
+}
+
+.service-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card__media {
+    height: 200px;
+    background-image: var(--bg);
+    background-size: cover;
+    background-position: center;
+    filter: saturate(1.05);
+}
+
+.service-card__body {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.chip--soft {
+    background: rgba(45,90,74,0.08);
+    color: var(--color-primary);
+}
+
+.service-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+}
+
+.service-card__list li::before {
+    content: "•";
+    color: var(--color-accent);
+    margin-right: 8px;
+}
+
+.btn--ghost {
+    align-self: flex-start;
+    color: var(--color-primary);
+    background: rgba(45, 90, 74, 0.08);
+    border: 1px solid rgba(45, 90, 74, 0.2);
+}
+
+.btn--ghost:hover {
+    background: rgba(45, 90, 74, 0.14);
+}
+
+.care-compare {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-warm);
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-lg);
+}
+
+.compare-card {
+    background: var(--color-white);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.compare-card--highlight {
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 35px rgba(45, 90, 74, 0.15);
+}
+
+.compare-card h3 {
+    margin-bottom: var(--space-sm);
+}
+
+.compare-price {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+}
+
+.compare-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.compare-card ul li::before {
+    content: "✓";
+    color: var(--color-accent);
+    margin-right: 8px;
+}
+
+.compare-cta {
+    text-align: center;
+    margin-top: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.compare-note {
+    color: var(--color-text-light);
+}
+
+.cta--services {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    color: var(--color-white);
+}
+
+/* --------------------
+   LEGAL PAGES
+-------------------- */
+.legal-page {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    background: var(--color-bg);
+}
+
+.legal-page__inner {
+    max-width: 800px;
+}
+
+.legal-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: var(--space-sm) 0 var(--space-xl);
+}
+
+.legal-meta {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
+}
+
+.legal-page h2 {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+    font-size: 1.2rem;
+}
+
+.legal-page ul {
+    margin: var(--space-sm) 0 var(--space-md) var(--space-md);
+    padding: 0;
+    list-style: disc;
+    color: var(--color-text-light);
+}
+
+.legal-page p {
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+}
+/* --------------------
+   CAREERS PAGE
+-------------------- */
+
 /* Careers Hero */
 .careers-hero {
     padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
@@ -95,6 +350,10 @@
     gap: var(--space-xl);
 }
 
+.benefits-grid--compact {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
 .benefit-card {
     text-align: center;
     padding: var(--space-xl);
@@ -141,6 +400,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
+}
+
+.requirements__container--compact {
+    gap: var(--space-2xl);
 }
 
 .requirements-list {
@@ -244,6 +507,94 @@
 .file-upload__text {
     font-size: 0.9375rem;
     color: var(--color-text-light);
+}
+
+/* Multi-step form controls (careers) */
+.form-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--space-xl);
+}
+
+.step-btn {
+    background: transparent;
+    border: none;
+    padding: var(--space-md);
+    font-weight: 600;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.step-btn--active {
+    background: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+.step-btn.active {
+    background: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.form-actions .prev-btn {
+    display: none;
+}
+
+.success-card {
+    text-align: center;
+    padding: var(--space-2xl);
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.careers-hero__image--placeholder {
+    background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.careers-hero__card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    color: #f6f8f7;
+    width: 100%;
+}
+
+.careers-hero__card ul {
+    margin: var(--space-md) 0;
+    padding-left: 1rem;
+    opacity: 0.9;
+}
+
+.careers-hero__card .tag {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-weight: 600;
 }
 
 .file-upload__hint {
