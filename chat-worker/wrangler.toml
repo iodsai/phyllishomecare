@@ -1,0 +1,9 @@
+name = "phyllis-chat"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Uncomment and set if you want a custom domain instead of workers.dev
+# routes = [
+#   { pattern = "chat.phyllishomecare.com", custom_domain = true }
+# ]
+
