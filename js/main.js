@@ -189,11 +189,12 @@ document.addEventListener('DOMContentLoaded', function() {
             showFormError(contactForm, '');
             showFormSuccess(contactForm, '');
             
-            if (!data.name || !data.phone || !data.service || !data.message) {
+            if (!data.name || !data.phone) {
                 showFormError(contactForm, 'Please complete all required fields.');
                 return;
             }
-            if (!contactForm.querySelector('#contact-consent').checked) {
+            const consentBox = contactForm.querySelector('input[name="consent"]');
+            if (consentBox && !consentBox.checked) {
                 showFormError(contactForm, 'Please check the consent box.');
                 return;
             }
