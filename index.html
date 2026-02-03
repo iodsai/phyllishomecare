@@ -372,6 +372,8 @@
                     <div class="form-error" aria-live="polite"></div>
                     <div class="form-success-inline" aria-live="polite"></div>
                     <input type="hidden" name="form_name" value="Contact Form - Homepage">
+                    <!-- Honeypot field to catch spam bots - hidden from real users -->
+                    <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Your Name *</label>
