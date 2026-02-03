@@ -1,0 +1,470 @@
+/* =====================================================
+   CAREERS PAGE STYLES
+   ===================================================== */
+
+/* Hero */
+.careers-hero {
+    padding: calc(80px + var(--space-4xl)) 0 var(--space-3xl);
+    background: linear-gradient(135deg, var(--color-bg-cream) 0%, var(--color-bg-warm) 100%);
+    text-align: center;
+}
+
+.careers-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: var(--space-lg);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.careers-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Why Join / Benefits */
+.why-join {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+}
+
+@media (max-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.benefit-card {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    transition: all var(--transition-base);
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.benefit-card__icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+}
+
+.benefit-card h3 {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.benefit-card p {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+/* Requirements */
+.requirements {
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-cream);
+}
+
+.requirements__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+    .requirements__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.requirements__column {
+    background: var(--color-white);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+}
+
+.requirements__column h4 {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.requirements__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.requirements__list li {
+    font-size: 1rem;
+    color: var(--color-text);
+    padding: var(--space-sm) 0;
+}
+
+.requirements__list--optional li {
+    color: var(--color-text-light);
+}
+
+/* =====================================================
+   CARD-BASED APPLICATION FORM
+   ===================================================== */
+.apply-section {
+    padding: var(--space-4xl) 0;
+    background: var(--color-white);
+}
+
+.apply-form-cards {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* Individual Form Card */
+.form-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.form-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.form-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--space-xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+}
+
+.form-card__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.form-card__title {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-white);
+}
+
+.form-card__desc {
+    font-size: 0.875rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.form-card__body {
+    padding: var(--space-xl);
+    background: var(--color-bg);
+}
+
+/* Final card (notes & submit) - no header */
+.form-card--final {
+    background: var(--color-bg-cream);
+    border-color: var(--color-border-light);
+}
+
+.form-card--final .form-card__body {
+    background: var(--color-bg-cream);
+}
+
+/* Form elements inside cards */
+.form-card .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+@media (max-width: 640px) {
+    .form-card .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-card .form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-card .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-card .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.form-card .form-group input,
+.form-card .form-group select,
+.form-card .form-group textarea {
+    width: 100%;
+    padding: 0.875rem var(--space-md);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.form-card .form-group input:focus,
+.form-card .form-group select:focus,
+.form-card .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(45, 90, 74, 0.1);
+}
+
+.form-card .form-group input::placeholder,
+.form-card .form-group textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-card .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Checkbox styling */
+.form-card .form-group--checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.form-card .form-group--checkbox input {
+    width: auto;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.form-card .form-group--checkbox label {
+    font-size: 0.8125rem;
+    color: var(--color-text-light);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.form-card .form-group--checkbox a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.form-card .form-group--checkbox a:hover {
+    color: var(--color-primary-light);
+}
+
+/* Submit button */
+.form-card .btn--full {
+    margin-top: var(--space-md);
+}
+
+/* Form note */
+.form-note {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+}
+
+/* Form feedback messages */
+.apply-form-cards .form-error,
+.apply-form-cards .form-success-inline {
+    display: none;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    text-align: center;
+}
+
+.apply-form-cards .form-error {
+    background: #ffecec;
+    color: #c0392b;
+    border: 1px solid #ffc4c4;
+}
+
+.apply-form-cards .form-success-inline {
+    background: #e8f7f0;
+    color: #1d7a4a;
+    border: 1px solid #b7e4cc;
+}
+
+.apply-form-cards .form-error.show,
+.apply-form-cards .form-success-inline.show {
+    display: block;
+}
+
+/* =====================================================
+   LEGACY FORM STYLES (for backwards compatibility)
+   ===================================================== */
+.apply-form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--color-bg-cream);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.apply-form .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+@media (max-width: 640px) {
+    .apply-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.apply-form .form-group {
+    margin-bottom: var(--space-md);
+}
+
+.apply-form .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.apply-form .form-group input,
+.apply-form .form-group select,
+.apply-form .form-group textarea {
+    width: 100%;
+    padding: 0.875rem var(--space-md);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.apply-form .form-group input:focus,
+.apply-form .form-group select:focus,
+.apply-form .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(45, 90, 74, 0.1);
+}
+
+.apply-form .form-group input::placeholder,
+.apply-form .form-group textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+.apply-form .form-group--checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+}
+
+.apply-form .form-group--checkbox input {
+    width: auto;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.apply-form .form-group--checkbox label {
+    font-size: 0.8125rem;
+    color: var(--color-text-light);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.apply-form .form-group--checkbox a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.apply-form .btn--full {
+    margin-top: var(--space-lg);
+}
+
+.apply-form .form-error,
+.apply-form .form-success-inline {
+    display: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    font-weight: 500;
+}
+
+.apply-form .form-error {
+    background: #ffecec;
+    color: #c0392b;
+    border: 1px solid #ffc4c4;
+}
+
+.apply-form .form-success-inline {
+    background: #e8f7f0;
+    color: #1d7a4a;
+    border: 1px solid #b7e4cc;
+}
+
+.apply-form .form-error.show,
+.apply-form .form-success-inline.show {
+    display: block;
+}

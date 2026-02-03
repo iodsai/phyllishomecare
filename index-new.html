@@ -9,11 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <meta name="chat-endpoint" content="__CHAT_ENDPOINT__">
-    <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c07a1b1dac8c4518901e3ebe5208269e"}'></script><!-- End Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c07a1b1dac8c4518901e3ebe5208269e"}'></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="index.html" class="nav__logo">
@@ -37,26 +37,19 @@
                 <a href="#contact" class="btn btn--primary nav__cta">Get Started</a>
             </div>
             <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero__bg">
-            <div class="hero__gradient"></div>
-        </div>
+        <div class="hero__bg"><div class="hero__gradient"></div></div>
         <div class="container hero__container">
             <div class="hero__content">
                 <span class="hero__badge">Serving Delaware Families</span>
                 <h1 class="hero__title">Compassionate Care, Right at Home</h1>
-                <p class="hero__subtitle">
-                    We provide personalized in-home care that helps your loved ones 
-                    live safely, comfortably, and with dignity in the place they know best.
-                </p>
+                <p class="hero__subtitle">We provide personalized in-home care that helps your loved ones live safely, comfortably, and with dignity in the place they know best.</p>
                 <div class="hero__actions">
                     <a href="#contact" class="btn btn--primary btn--lg">Request a Free Consultation</a>
                     <a href="tel:+1-302-446-3986" class="btn btn--outline btn--lg">Call (302) 446-3986</a>
@@ -68,10 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero__scroll">
-            <div class="scroll-indicator"></div>
-            <span>Scroll to explore</span>
-        </div>
+        <div class="hero__scroll"><div class="scroll-indicator"></div><span>Scroll to explore</span></div>
     </section>
 
     <!-- Services Section -->
@@ -80,10 +70,7 @@
             <div class="section-header section-header--center">
                 <span class="section-tag">Our Services</span>
                 <h2 class="section-title">Care Tailored to Your Needs</h2>
-                <p class="section-subtitle">
-                    From companionship to specialized care, we provide comprehensive 
-                    support that adapts to your family's unique situation.
-                </p>
+                <p class="section-subtitle">From companionship to specialized care, we provide comprehensive support that adapts to your family's unique situation.</p>
             </div>
             <div class="services__grid">
                 <!-- Companion Care -->
@@ -97,10 +84,7 @@
                         </svg>
                     </div>
                     <h3 class="service-card__title">Companion Care</h3>
-                    <p class="service-card__desc">
-                        Meaningful conversation, engaging activities, and genuine friendship 
-                        that brightens every day.
-                    </p>
+                    <p class="service-card__desc">Meaningful conversation, engaging activities, and genuine friendship that brightens every day.</p>
                     <ul class="service-card__features">
                         <li>Social engagement & conversation</li>
                         <li>Light meal preparation</li>
@@ -108,7 +92,7 @@
                     </ul>
                 </div>
 
-                <!-- Personal Care -->
+                <!-- Personal Care (Featured) -->
                 <div class="service-card service-card--featured">
                     <span class="service-card__badge">Most Requested</span>
                     <div class="service-card__icon">
@@ -117,10 +101,7 @@
                         </svg>
                     </div>
                     <h3 class="service-card__title">Personal Care</h3>
-                    <p class="service-card__desc">
-                        Dignified assistance with daily activities, helping maintain 
-                        independence while ensuring safety.
-                    </p>
+                    <p class="service-card__desc">Dignified assistance with daily activities, helping maintain independence while ensuring safety.</p>
                     <ul class="service-card__features">
                         <li>Bathing & grooming assistance</li>
                         <li>Dressing & mobility support</li>
@@ -137,10 +118,7 @@
                         </svg>
                     </div>
                     <h3 class="service-card__title">Memory Care</h3>
-                    <p class="service-card__desc">
-                        Specialized support for those with Alzheimer's or dementia, 
-                        delivered with patience and expertise.
-                    </p>
+                    <p class="service-card__desc">Specialized support for those with Alzheimer's or dementia, delivered with patience and expertise.</p>
                     <ul class="service-card__features">
                         <li>Cognitive stimulation activities</li>
                         <li>Safety monitoring</li>
@@ -157,10 +135,7 @@
                         </svg>
                     </div>
                     <h3 class="service-card__title">24-Hour & Live-In Care</h3>
-                    <p class="service-card__desc">
-                        Round-the-clock support for those who need continuous assistance 
-                        and overnight supervision.
-                    </p>
+                    <p class="service-card__desc">Round-the-clock support for those who need continuous assistance and overnight supervision.</p>
                     <ul class="service-card__features">
                         <li>Live-in caregiver options</li>
                         <li>Overnight supervision</li>
@@ -178,10 +153,7 @@
                         </svg>
                     </div>
                     <h3 class="service-card__title">Homemaker Services</h3>
-                    <p class="service-card__desc">
-                        Keep the home safe, clean, and comfortable with help for 
-                        household tasks.
-                    </p>
+                    <p class="service-card__desc">Keep the home safe, clean, and comfortable with help for household tasks.</p>
                     <ul class="service-card__features">
                         <li>Light housekeeping</li>
                         <li>Laundry & linens</li>
@@ -201,10 +173,7 @@
                         </svg>
                     </div>
                     <h3 class="service-card__title">Respite Care</h3>
-                    <p class="service-card__desc">
-                        Give family caregivers a well-deserved break while ensuring 
-                        quality care continues.
-                    </p>
+                    <p class="service-card__desc">Give family caregivers a well-deserved break while ensuring quality care continues.</p>
                     <ul class="service-card__features">
                         <li>Flexible scheduling</li>
                         <li>Short-term or recurring</li>
@@ -226,17 +195,8 @@
             <div class="about__content">
                 <span class="section-tag">About Phyllis Home Care</span>
                 <h2 class="section-title">Founded on Love, Built on Trust</h2>
-                <p class="about__text">
-                    Phyllis Home Care was born from a simple belief: everyone deserves 
-                    to age with dignity in the comfort of their own home. Named after 
-                    Senior Nurse Madam Phyllis Haizel, whose spirit of compassion 
-                    inspires everything we do.
-                </p>
-                <p class="about__text">
-                    Our caregivers aren't just employees—they're carefully selected 
-                    individuals who share our passion for making a difference in the 
-                    lives of those we serve.
-                </p>
+                <p class="about__text">Phyllis Home Care was born from a simple belief: everyone deserves to age with dignity in the comfort of their own home. Named after Senior Nurse Madam Phyllis Haizel, whose spirit of compassion inspires everything we do.</p>
+                <p class="about__text">Our caregivers aren't just employees—they're carefully selected individuals who share our passion for making a difference in the lives of those we serve.</p>
                 <div class="about__values">
                     <div class="value-item">
                         <div class="value-icon">♡</div>
@@ -264,16 +224,13 @@
         </div>
     </section>
 
-    <!-- Process Section -->
+    <!-- How It Works Section -->
     <section class="process" id="how-it-works">
         <div class="container">
             <div class="section-header section-header--center">
                 <span class="section-tag">How It Works</span>
                 <h2 class="section-title">Getting Started is Simple</h2>
-                <p class="section-subtitle">
-                    From your first call to the first day of care, we make the 
-                    process smooth and stress-free.
-                </p>
+                <p class="section-subtitle">From your first call to the first day of care, we make the process smooth and stress-free.</p>
             </div>
             <div class="process__timeline">
                 <div class="process__step">
@@ -307,10 +264,7 @@
     <section class="cta">
         <div class="container cta__container">
             <h2 class="cta__title">Ready to Explore Your Care Options?</h2>
-            <p class="cta__subtitle">
-                Schedule a free, no-obligation consultation. We'll answer your 
-                questions and help you understand how we can support your family.
-            </p>
+            <p class="cta__subtitle">Schedule a free, no-obligation consultation. We'll answer your questions and help you understand how we can support your family.</p>
             <div class="cta__actions">
                 <a href="#contact" class="btn btn--white btn--lg">Get Started Today</a>
                 <a href="tel:+1-302-446-3986" class="btn btn--outline-white btn--lg">Call (302) 446-3986</a>
@@ -324,10 +278,7 @@
             <div class="contact__info">
                 <span class="section-tag">Contact Us</span>
                 <h2 class="section-title">We're Here to Help</h2>
-                <p class="contact__text">
-                    Have questions? Ready to get started? Reach out anytime—our 
-                    team responds quickly during business hours.
-                </p>
+                <p class="contact__text">Have questions? Ready to get started? Reach out anytime—our team responds quickly during business hours.</p>
                 <div class="contact__methods">
                     <div class="contact-method">
                         <div class="contact-method__icon">
@@ -405,10 +356,7 @@
                     </div>
                     <div class="form-group form-group--checkbox">
                         <input type="checkbox" id="consent" name="consent" required>
-                        <label for="consent">
-                            I consent to the collection and use of my information as described in the 
-                            <a href="privacy.html" target="_blank">Privacy Policy</a>.
-                        </label>
+                        <label for="consent">I consent to the collection and use of my information as described in the <a href="privacy.html" target="_blank">Privacy Policy</a>.</label>
                     </div>
                     <button type="submit" class="btn btn--primary btn--full">Send Request</button>
                 </form>
@@ -425,10 +373,7 @@
                         <span class="logo-icon">❦</span>
                         <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
                     </a>
-                    <p class="footer__tagline">
-                        Compassionate in-home care for your loved ones. 
-                        Serving Delaware families with dignity and respect.
-                    </p>
+                    <p class="footer__tagline">Compassionate in-home care for your loved ones. Serving Delaware families with dignity and respect.</p>
                 </div>
                 <div class="footer__links">
                     <div class="footer__column">
@@ -450,11 +395,11 @@
                         </ul>
                     </div>
                     <div class="footer__column">
-                        <h4 class="footer__heading">Get Started</h4>
+                        <h4 class="footer__heading">Get in Touch</h4>
                         <ul class="footer__list">
-                            <li><a href="#contact">Request Care</a></li>
-                            <li><a href="careers.html">Join Our Team</a></li>
                             <li><a href="tel:+1-302-446-3986">(302) 446-3986</a></li>
+                            <li><a href="mailto:care@phyllishomecare.com">care@phyllishomecare.com</a></li>
+                            <li><a href="careers.html">Join Our Team</a></li>
                         </ul>
                     </div>
                 </div>
@@ -469,22 +414,20 @@
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
-    
+
     <!-- Floating CTA (mobile) -->
     <a class="floating-cta" href="#contact">Get Started</a>
-    
+
     <!-- Cookie Notice -->
     <div class="container cookie-wrapper">
         <div id="cookie-notice" class="cookie-notice">
-            <p class="cookie-notice__text">
-                This website uses essential cookies to ensure proper functionality. We do not use cookies for advertising or tracking.
-                By using this site, you agree to our <a href="privacy.html">Privacy Policy</a>.
-            </p>
+            <p class="cookie-notice__text">This website uses essential cookies to ensure proper functionality. We do not use cookies for advertising or tracking. By using this site, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
             <button class="cookie-notice__button" data-cookie-dismiss>OK</button>
         </div>
     </div>
-    
+
     <!-- Chat Widget -->
     <button class="chat-launcher" id="chat-launcher" aria-expanded="false">
         <span class="chat-launcher__dot"></span>

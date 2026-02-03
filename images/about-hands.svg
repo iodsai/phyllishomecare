@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <defs>
+    <!-- Background gradient - warm cream -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FAF8F5"/>
+      <stop offset="100%" style="stop-color:#F5F0E8"/>
+    </linearGradient>
+    
+    <!-- Gold accent -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4C08A"/>
+      <stop offset="100%" style="stop-color:#C4A962"/>
+    </linearGradient>
+    
+    <!-- Green accent -->
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3A7A64"/>
+      <stop offset="100%" style="stop-color:#2D5A4A"/>
+    </linearGradient>
+    
+    <!-- Light skin tone -->
+    <linearGradient id="lightSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5DCC8"/>
+      <stop offset="100%" style="stop-color:#E8C9B0"/>
+    </linearGradient>
+    
+    <!-- Dark skin tone -->
+    <linearGradient id="darkSkin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B6F5C"/>
+      <stop offset="100%" style="stop-color:#6B4F3C"/>
+    </linearGradient>
+    
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#2D5A4A" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="500" height="400" rx="16" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle decorative circles -->
+  <circle cx="400" cy="80" r="60" fill="#2D5A4A" opacity="0.03"/>
+  <circle cx="100" cy="320" r="50" fill="#C4A962" opacity="0.08"/>
+  
+  <!-- Left side: Light-skinned hand reaching -->
+  <g transform="translate(120, 200)" filter="url(#shadow)">
+    <!-- Arm/hand coming from left -->
+    <path d="M-60 20 
+             C-40 15 -20 5 0 0
+             C15 -5 25 -8 35 -5
+             C45 -2 50 5 48 15
+             C46 25 35 30 20 32
+             C5 34 -15 30 -30 28
+             C-45 26 -55 24 -60 20Z" 
+          fill="url(#lightSkin)"
+          stroke="#D4B896"
+          stroke-width="1"/>
+    <!-- Fingers detail -->
+    <ellipse cx="42" cy="8" rx="12" ry="8" fill="url(#lightSkin)" stroke="#D4B896" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Right side: Dark-skinned hand reaching -->
+  <g transform="translate(380, 200)" filter="url(#shadow)">
+    <!-- Arm/hand coming from right -->
+    <path d="M60 20 
+             C40 15 20 5 0 0
+             C-15 -5 -25 -8 -35 -5
+             C-45 -2 -50 5 -48 15
+             C-46 25 -35 30 -20 32
+             C-5 34 15 30 30 28
+             C45 26 55 24 60 20Z" 
+          fill="url(#darkSkin)"
+          stroke="#5A3F2C"
+          stroke-width="1"/>
+    <!-- Fingers detail -->
+    <ellipse cx="-42" cy="8" rx="12" ry="8" fill="url(#darkSkin)" stroke="#5A3F2C" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Central heart where hands meet -->
+  <g transform="translate(250, 190)" filter="url(#shadow)">
+    <!-- Heart glow -->
+    <path d="M0 -25 
+             C-12 -40 -35 -40 -35 -15
+             C-35 8 0 35 0 35
+             C0 35 35 8 35 -15
+             C35 -40 12 -40 0 -25Z"
+          fill="#C4A962"
+          opacity="0.2"
+          transform="scale(1.15)"/>
+    
+    <!-- Main heart -->
+    <path d="M0 -22 
+             C-10 -35 -30 -35 -30 -12
+             C-30 7 0 30 0 30
+             C0 30 30 7 30 -12
+             C30 -35 10 -35 0 -22Z"
+          fill="url(#goldGrad)"/>
+    
+    <!-- Heart shine -->
+    <path d="M-14 -20 C-20 -28 -22 -28 -22 -16 C-22 -10 -18 -6 -14 -6"
+          fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Small house icon above -->
+  <g transform="translate(250, 80)">
+    <g fill="none" stroke="url(#greenGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 -15 L-20 3 L-16 3 L-16 20 L16 20 L16 3 L20 3 Z"/>
+      <rect x="-5" y="6" width="10" height="14" rx="1"/>
+    </g>
+  </g>
+  
+  <!-- Connection arc between hands -->
+  <path d="M80 210 Q250 280 420 210" stroke="url(#greenGrad)" stroke-width="1.5" fill="none" opacity="0.3" stroke-dasharray="4 3"/>
+  
+  <!-- Small floating hearts -->
+  <g fill="url(#goldGrad)" opacity="0.5">
+    <path transform="translate(80, 120) scale(0.35)" d="M0 -10 C-5 -15 -14 -15 -14 -6 C-14 4 0 14 0 14 C0 14 14 4 14 -6 C14 -15 5 -15 0 -10Z"/>
+    <path transform="translate(420, 110) scale(0.4)" d="M0 -10 C-5 -15 -14 -15 -14 -6 C-14 4 0 14 0 14 C0 14 14 4 14 -6 C14 -15 5 -15 0 -10Z"/>
+    <path transform="translate(150, 320) scale(0.32)" d="M0 -10 C-5 -15 -14 -15 -14 -6 C-14 4 0 14 0 14 C0 14 14 4 14 -6 C14 -15 5 -15 0 -10Z"/>
+    <path transform="translate(350, 330) scale(0.38)" d="M0 -10 C-5 -15 -14 -15 -14 -6 C-14 4 0 14 0 14 C0 14 14 4 14 -6 C14 -15 5 -15 0 -10Z"/>
+  </g>
+  
+  <!-- Decorative dots -->
+  <g fill="#2D5A4A" opacity="0.15">
+    <circle cx="180" cy="100" r="3"/>
+    <circle cx="320" cy="95" r="2.5"/>
+    <circle cx="100" cy="250" r="2"/>
+    <circle cx="400" cy="260" r="2.5"/>
+    <circle cx="250" cy="350" r="2"/>
+  </g>
+  
+  <!-- Bottom text -->
+  <text x="250" y="375" text-anchor="middle" fill="#2D5A4A" font-family="Georgia, serif" font-size="11" letter-spacing="2" opacity="0.6">
+    TOGETHER IN CARE
+  </text>
+</svg>
