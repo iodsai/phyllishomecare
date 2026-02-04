@@ -520,5 +520,86 @@
     
     <!-- Screen reader only class -->
     <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+    
+    <!-- Structured Data - LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HomeHealthCareService",
+        "name": "Phyllis Home Care",
+        "description": "Professional in-home care services in Delaware. Companion care, personal care, memory support, and 24-hour care.",
+        "url": "https://phyllishomecare.com",
+        "telephone": "+1-302-446-3986",
+        "email": "care@phyllishomecare.com",
+        "priceRange": "$",
+        "areaServed": {
+            "@type": "State",
+            "name": "Delaware",
+            "sameAs": "https://en.wikipedia.org/wiki/Delaware"
+        },
+        "serviceType": [
+            "Companion Care",
+            "Personal Care",
+            "Memory Care",
+            "24-Hour Care",
+            "Live-In Care",
+            "Respite Care",
+            "Homemaker Services"
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "sameAs": [],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Home Care Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Companion Care",
+                        "description": "Meaningful conversation, engaging activities, and genuine friendship that brightens every day."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Personal Care",
+                        "description": "Dignified assistance with daily activities including bathing, dressing, and medication reminders."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Memory Care",
+                        "description": "Specialized support for those with Alzheimer's or dementia, delivered with patience and expertise."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "24-Hour & Live-In Care",
+                        "description": "Round-the-clock support for those who need continuous assistance and overnight supervision."
+                    }
+                }
+            ]
+        }
+    }
+    </script>
 </body>
 </html>
