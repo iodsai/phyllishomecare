@@ -1,0 +1,476 @@
+/* =====================================================
+   PHYLLIS HOME CARE - CLIENT INTAKE FORM STYLES
+   ===================================================== */
+
+/* Hero Section */
+.intake-hero {
+    padding: calc(80px + var(--space-3xl)) 0 var(--space-2xl);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    text-align: center;
+}
+
+.intake-hero__title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin-bottom: var(--space-md);
+    color: var(--color-white);
+}
+
+.intake-hero__subtitle {
+    font-size: 1.125rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Intake Section */
+.intake-section {
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg);
+}
+
+.intake-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Progress Indicator */
+.intake-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-2xl);
+    position: relative;
+}
+
+.intake-progress::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: var(--color-border);
+    z-index: 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.progress-step__number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-text-light);
+    transition: all var(--transition-base);
+}
+
+.progress-step__label {
+    font-size: 0.8125rem;
+    color: var(--color-text-light);
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.progress-step.active .progress-step__number,
+.progress-step.completed .progress-step__number {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.progress-step.active .progress-step__label {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.progress-step.completed .progress-step__number::after {
+    content: '✓';
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Cards */
+.form-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-xl);
+    overflow: hidden;
+}
+
+.form-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    background: var(--color-bg-cream);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.form-card__number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.form-card__title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xs);
+}
+
+.form-card__desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+.form-card__body {
+    padding: var(--space-xl);
+}
+
+.form-card--final {
+    background: var(--color-bg-cream);
+    border: 1px solid var(--color-border);
+}
+
+.form-card--final .form-card__body {
+    padding: var(--space-xl);
+}
+
+/* Form Elements */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.form-group label span {
+    color: var(--color-error, #dc3545);
+}
+
+.form-hint {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    background: var(--color-white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(45, 90, 74, 0.1);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: var(--color-error, #dc3545);
+}
+
+/* Checkbox Cards (for services) */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+.checkbox-grid--compact {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.checkbox-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-card input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkbox-card__content {
+    display: block;
+    padding: var(--space-lg);
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.checkbox-card:hover .checkbox-card__content {
+    border-color: var(--color-primary-light);
+}
+
+.checkbox-card input:checked + .checkbox-card__content {
+    border-color: var(--color-primary);
+    background: rgba(45, 90, 74, 0.05);
+}
+
+.checkbox-card input:focus + .checkbox-card__content {
+    box-shadow: 0 0 0 3px rgba(45, 90, 74, 0.1);
+}
+
+.checkbox-card__title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+}
+
+.checkbox-card__desc {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+/* Checkbox List (for conditions) */
+.checkbox-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.checkbox-item:hover {
+    background: var(--color-bg);
+}
+
+.checkbox-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+}
+
+.checkbox-item span {
+    font-size: 0.9375rem;
+}
+
+/* Form Group Checkbox (consent) */
+.form-group--checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+}
+
+.form-group--checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.form-group--checkbox label {
+    font-weight: 400;
+    margin-bottom: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.form-actions--final {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-lg);
+}
+
+.form-note {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-top: var(--space-lg);
+}
+
+/* Form Messages */
+.form-error {
+    display: none;
+    padding: var(--space-md);
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-md);
+    color: #dc2626;
+    margin-bottom: var(--space-lg);
+}
+
+.form-success-inline {
+    display: none;
+    padding: var(--space-md);
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: var(--radius-md);
+    color: #16a34a;
+    margin-bottom: var(--space-lg);
+}
+
+/* Success State */
+.form-success {
+    text-align: center;
+    padding: var(--space-3xl);
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-md);
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-xl);
+}
+
+.form-success h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-md);
+}
+
+.form-success p {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+}
+
+.form-success .btn {
+    margin-top: var(--space-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .intake-progress {
+        display: none;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkbox-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    .form-card__header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .intake-section {
+        padding: var(--space-xl) 0;
+    }
+    
+    .form-card__body {
+        padding: var(--space-lg);
+    }
+    
+    .form-card__header {
+        padding: var(--space-lg);
+    }
+}
