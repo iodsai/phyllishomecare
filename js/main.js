@@ -259,6 +259,8 @@
     
     function initContactForm(form) {
         var isSubmitting = false;
+        var formLoadTime = Date.now();
+        var MIN_FILL_TIME = 3000; // Minimum 3 seconds to fill form (bots are instant)
         
         on(form, 'submit', function(e) {
             e.preventDefault();
@@ -307,6 +309,15 @@
             var honeypot = $('input[name="_gotcha"]', form);
             if (honeypot && honeypot.value) {
                 // Bot detected, silently fail
+                showFormSuccess(form, 'Message sent! We will call you shortly.');
+                form.reset();
+                return;
+            }
+            
+            // Time-based bot check (bots fill forms instantly)
+            var fillTime = Date.now() - formLoadTime;
+            if (fillTime < MIN_FILL_TIME) {
+                // Too fast, likely a bot - silently fail
                 showFormSuccess(form, 'Message sent! We will call you shortly.');
                 form.reset();
                 return;
@@ -363,6 +374,8 @@
     
     function initCareersForm(form) {
         var isSubmitting = false;
+        var formLoadTime = Date.now();
+        var MIN_FILL_TIME = 5000; // Minimum 5 seconds for careers form (longer form)
         
         on(form, 'submit', function(e) {
             e.preventDefault();
@@ -408,6 +421,14 @@
             // Honeypot check
             var honeypot = $('input[name="_gotcha"]', form);
             if (honeypot && honeypot.value) {
+                showFormSuccess(form, 'Application submitted! We will be in touch soon.');
+                form.reset();
+                return;
+            }
+            
+            // Time-based bot check
+            var fillTime = Date.now() - formLoadTime;
+            if (fillTime < MIN_FILL_TIME) {
                 showFormSuccess(form, 'Application submitted! We will be in touch soon.');
                 form.reset();
                 return;
