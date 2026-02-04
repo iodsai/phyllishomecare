@@ -24,6 +24,9 @@
     --color-border: #E5E0D8;
     --color-border-light: #F0EDE8;
     
+    --color-error: #dc3545;
+    --color-success: #16a34a;
+    
     /* Typography */
     --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Outfit', -apple-system, sans-serif;

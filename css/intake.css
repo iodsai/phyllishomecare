@@ -198,8 +198,9 @@
     color: var(--color-text);
 }
 
-.form-group label span {
+.form-group label span[aria-hidden="true"] {
     color: var(--color-error, #dc3545);
+    margin-left: 2px;
 }
 
 .form-hint {
