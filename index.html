@@ -73,7 +73,7 @@
                 <li><a href="#about" class="nav__link">About</a></li>
                 <li><a href="#how-it-works" class="nav__link">How It Works</a></li>
                 <li><a href="careers.html" class="nav__link">Careers</a></li>
-                <li><a href="#contact" class="nav__link">Contact</a></li>
+                <li><a href="intake.html" class="nav__link">Contact</a></li>
             </ul>
             <div class="nav__actions">
                 <a href="tel:+1-302-446-3986" class="nav__phone">
@@ -82,7 +82,7 @@
                     </svg>
                     <span>(302) 446-3986</span>
                 </a>
-                <a href="#contact" class="btn btn--primary nav__cta">Get Started</a>
+                <a href="intake.html" class="btn btn--primary nav__cta">Get Started</a>
             </div>
             <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
@@ -368,15 +368,16 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div class="container contact__container">
-            <div class="contact__info">
+        <div class="container">
+            <div class="contact__centered">
                 <span class="section-tag">Contact Us</span>
                 <h2 class="section-title">We're Here to Help</h2>
                 <p class="contact__text">
                     Have questions? Ready to get started? Reach out anytime—our 
                     team responds quickly during business hours.
                 </p>
-                <div class="contact__methods">
+                
+                <div class="contact__methods contact__methods--centered">
                     <div class="contact-method">
                         <div class="contact-method__icon" aria-hidden="true">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -413,56 +414,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="contact__form-wrapper">
-                <h3 class="contact-form__title">Request a Free Consultation</h3>
-                <form id="contact-form" class="contact-form" action="https://formspree.io/f/maqyvorl" method="POST" novalidate>
-                    <div class="form-error" role="alert" aria-live="polite"></div>
-                    <div class="form-success-inline" role="status" aria-live="polite"></div>
-                    <input type="hidden" name="form_name" value="Contact Form - Homepage">
-                    <input type="hidden" name="_subject" value="New Contact Form Submission">
-                    <!-- Honeypot spam protection -->
-                    <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Your Name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
-                            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Full name" maxlength="100">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
-                            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555" maxlength="20">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" maxlength="100">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">What type of care do you need?</label>
-                        <select id="service" name="service">
-                            <option value="">Select a service...</option>
-                            <option value="companion">Companion Care</option>
-                            <option value="personal">Personal Care</option>
-                            <option value="memory">Memory Care</option>
-                            <option value="24hour">24-Hour / Live-In Care</option>
-                            <option value="homemaker">Homemaker Services</option>
-                            <option value="respite">Respite Care</option>
-                            <option value="unsure">Not sure yet</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tell us about your situation</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Brief description of your care needs, timeline, or any questions..." maxlength="2000"></textarea>
-                    </div>
-                    <div class="form-group form-group--checkbox">
-                        <input type="checkbox" id="consent" name="consent" required>
-                        <label for="consent">
-                            I consent to the collection and use of my information as described in the 
-                            <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full">Send Request</button>
-                </form>
+                
+                <div class="contact__cta">
+                    <a href="intake.html" class="btn btn--primary btn--lg">Request a Free Consultation</a>
+                    <p class="contact__cta-note">Fill out our quick form and we'll call you within 24 hours.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -497,7 +453,7 @@
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#how-it-works">How It Works</a></li>
                             <li><a href="careers.html">Careers</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="intake.html">Contact</a></li>
                         </ul>
                     </div>
                     <div class="footer__column">
@@ -524,7 +480,7 @@
     <script src="js/main.js" defer></script>
     
     <!-- Floating CTA (mobile) -->
-    <a class="floating-cta" href="#contact" aria-label="Get Started - Request Care">Get Started</a>
+    <a class="floating-cta" href="intake.html" aria-label="Get Started - Request Care">Get Started</a>
     
     <!-- Cookie Notice -->
     <div class="container cookie-wrapper">
