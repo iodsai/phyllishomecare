@@ -75,6 +75,8 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -102,6 +104,12 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+    touch-action: manipulation;
+}
+
+/* Improve touch targets */
+a, button, input, select, textarea {
+    touch-action: manipulation;
 }
 
 ul, ol {

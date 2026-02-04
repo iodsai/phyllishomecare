@@ -474,4 +474,17 @@
     .form-card__header {
         padding: var(--space-lg);
     }
+    
+    .intake-hero {
+        padding: calc(70px + var(--space-xl)) 0 var(--space-xl);
+    }
+    
+    .intake-hero__title {
+        font-size: 1.75rem;
+    }
+    
+    .btn--lg {
+        width: 100%;
+        justify-content: center;
+    }
 }
