@@ -1,53 +1,30 @@
 /**
  * PHYLLIS HOME CARE - Client Intake Form
- * Multi-step form with validation
+ * Multi-step form - simplified submission
  */
 
 (function() {
     'use strict';
     
-    // Wait for DOM to be ready
     function init() {
         var form = document.getElementById('intake-form');
-        if (!form) return; // Exit if not on intake page
+        if (!form) return;
         
         var steps = document.querySelectorAll('.form-step');
         var progressSteps = document.querySelectorAll('.progress-step');
         var currentStep = 1;
-        var formLoadTime = Date.now();
-        var MIN_FILL_TIME = 5000; // 5 seconds minimum (reduced for testing)
         var isSubmitting = false;
         
-        // Rate limiter
-        var submissions = [];
-        var maxSubmissions = 5; // Increased for testing
-        var windowMs = 300000; // 5 minutes
-        
-        function canSubmit() {
-            var now = Date.now();
-            submissions = submissions.filter(function(time) {
-                return now - time < windowMs;
-            });
-            if (submissions.length >= maxSubmissions) {
-                return false;
-            }
-            submissions.push(now);
-            return true;
-        }
-        
         function showStep(step) {
-            // Hide all steps
             steps.forEach(function(s) {
                 s.classList.remove('active');
             });
             
-            // Show target step
             var targetStep = document.querySelector('.form-step[data-step="' + step + '"]');
             if (targetStep) {
                 targetStep.classList.add('active');
             }
             
-            // Update progress indicators
             progressSteps.forEach(function(p, index) {
                 p.classList.remove('active', 'completed');
                 if (index + 1 < step) {
@@ -59,7 +36,6 @@
             
             currentStep = step;
             
-            // Scroll to top of form
             if (form) {
                 form.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
@@ -73,10 +49,8 @@
             var isValid = true;
             
             requiredFields.forEach(function(field) {
-                // Clear previous error state
                 field.classList.remove('error');
                 
-                // Skip checkboxes in this loop - handle separately
                 if (field.type === 'checkbox') {
                     if (!field.checked) {
                         isValid = false;
@@ -90,7 +64,6 @@
                     field.classList.add('error');
                 }
                 
-                // Email validation
                 if (field.type === 'email' && field.value) {
                     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailRegex.test(field.value)) {
@@ -99,7 +72,6 @@
                     }
                 }
                 
-                // Phone validation
                 if (field.type === 'tel' && field.value) {
                     var digits = field.value.replace(/\D/g, '');
                     if (digits.length < 10) {
@@ -109,7 +81,6 @@
                 }
             });
             
-            // Check for at least one service selected on step 3
             if (step === 3) {
                 var services = stepEl.querySelectorAll('input[name="services"]:checked');
                 if (services.length === 0) {
@@ -133,7 +104,6 @@
             if (errorEl) {
                 errorEl.textContent = message;
                 errorEl.style.display = 'block';
-                // Scroll to error
                 errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
@@ -184,59 +154,24 @@
         progressSteps.forEach(function(step, index) {
             step.addEventListener('click', function() {
                 var targetStep = index + 1;
-                // Only allow going back, not forward (must validate)
                 if (targetStep < currentStep) {
                     showStep(targetStep);
                 }
             });
         });
         
-        // Form submission
+        // Form submission - simple and direct
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            console.log('Form submit triggered'); // Debug
+            if (isSubmitting) return;
             
-            if (isSubmitting) {
-                console.log('Already submitting, skipping');
-                return;
-            }
+            if (!validateStep(4)) return;
             
-            // Validate final step
-            if (!validateStep(4)) {
-                console.log('Validation failed');
-                return;
-            }
-            
-            // Check consent
             var consentBox = form.querySelector('#consent');
             if (consentBox && !consentBox.checked) {
                 showError('Please check the consent box to continue.');
-                console.log('Consent not checked');
                 return;
-            }
-            
-            // Rate limiting
-            if (!canSubmit()) {
-                showError('Too many submissions. Please wait a few minutes before trying again.');
-                console.log('Rate limited');
-                return;
-            }
-            
-            // Honeypot check
-            var honeypot = form.querySelector('input[name="_gotcha"]');
-            if (honeypot && honeypot.value) {
-                console.log('Honeypot triggered');
-                showSuccess();
-                return;
-            }
-            
-            // Time-based bot check - be more lenient
-            var fillTime = Date.now() - formLoadTime;
-            console.log('Fill time: ' + fillTime + 'ms');
-            if (fillTime < MIN_FILL_TIME) {
-                // Instead of silently failing, just proceed anyway for real users
-                console.log('Fast submission detected but proceeding');
             }
             
             isSubmitting = true;
@@ -253,26 +188,22 @@
             var formData = new FormData(form);
             var formAction = form.getAttribute('action') || 'https://formspree.io/f/maqyvorl';
             
-            console.log('Submitting to: ' + formAction);
-            
             fetch(formAction, {
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
             })
             .then(function(response) {
-                console.log('Response status: ' + response.status);
                 if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.status);
+                    throw new Error('Submission failed');
                 }
                 return response.json();
             })
-            .then(function(data) {
-                console.log('Success:', data);
+            .then(function() {
                 showSuccess();
             })
             .catch(function(err) {
-                console.error('Form submission error:', err);
+                console.error('Error:', err);
                 showError('Something went wrong. Please call us at (302) 446-3986.');
                 if (submitBtn) {
                     submitBtn.innerHTML = originalText;
@@ -300,7 +231,7 @@
             });
         });
         
-        // Clear error state on input
+        // Clear error on input
         var allFields = form.querySelectorAll('input, select, textarea');
         allFields.forEach(function(field) {
             field.addEventListener('input', function() {
@@ -312,7 +243,6 @@
         });
     }
     
-    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
