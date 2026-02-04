@@ -5,38 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers | Join Our Caregiving Team | Phyllis Home Care</title>
     <meta name="description" content="Become a Phyllis Home Care caregiver. Competitive pay, flexible schedules, and a supportive team. Apply today in Delaware.">
+    
+    <!-- Performance: DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//formspree.io">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Performance: Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="css/careers.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- SEO & Social -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://phyllishomecare.com/careers.html">
+    <meta property="og:title" content="Careers at Phyllis Home Care">
+    <meta property="og:description" content="Join our caregiving team. Competitive pay, flexible schedules.">
+    <meta property="og:type" content="website">
+    
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Analytics - deferred -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c07a1b1dac8c4518901e3ebe5208269e"}'></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/careers.css">
+    
+    <!-- Critical CSS -->
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Outfit',system-ui,sans-serif;line-height:1.6;color:#1a1a1a}
+        .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff}
+        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+    </style>
+    
+    <!-- Stylesheets - non-blocking -->
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/careers.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/careers.css">
+    </noscript>
 </head>
 <body>
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="index.html" class="nav__logo">
-                <span class="logo-icon">❦</span>
+                <span class="logo-icon" aria-hidden="true">&#10086;</span>
                 <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
             </a>
             <ul class="nav__menu" id="nav-menu">
                 <li><a href="index.html#services" class="nav__link">Services</a></li>
                 <li><a href="index.html#about" class="nav__link">About</a></li>
                 <li><a href="index.html#how-it-works" class="nav__link">How It Works</a></li>
-                <li><a href="careers.html" class="nav__link">Careers</a></li>
+                <li><a href="careers.html" class="nav__link" aria-current="page">Careers</a></li>
                 <li><a href="index.html#contact" class="nav__link">Contact</a></li>
             </ul>
             <div class="nav__actions">
                 <a href="tel:+1-302-446-3986" class="nav__phone">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
-                    (302) 446-3986
+                    <span>(302) 446-3986</span>
                 </a>
                 <a href="index.html#contact" class="btn btn--primary nav__cta">Request Care</a>
             </div>
-            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </nav>
@@ -59,26 +98,26 @@
                 <h2 class="section-title">Support That Backs Your Hard Work</h2>
             </div>
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-card__icon">💰</div>
+                <article class="benefit-card">
+                    <div class="benefit-card__icon" aria-hidden="true">&#128176;</div>
                     <h3>Fair, Fast Pay</h3>
                     <p>Competitive hourly rates with direct deposit weekly.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-card__icon">📅</div>
+                </article>
+                <article class="benefit-card">
+                    <div class="benefit-card__icon" aria-hidden="true">&#128197;</div>
                     <h3>Schedules You Pick</h3>
                     <p>Build a route near home. Swap shifts easily with coordinator help.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-card__icon">🎓</div>
-                    <h3>Training & Growth</h3>
+                </article>
+                <article class="benefit-card">
+                    <div class="benefit-card__icon" aria-hidden="true">&#127891;</div>
+                    <h3>Training &amp; Growth</h3>
                     <p>Paid onboarding, ongoing training, and paths to advancement.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-card__icon">🤝</div>
+                </article>
+                <article class="benefit-card">
+                    <div class="benefit-card__icon" aria-hidden="true">&#129309;</div>
                     <h3>You're Never Alone</h3>
                     <p>24/7 on-call support plus regular check-ins from our team.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -95,26 +134,26 @@
                 <div class="requirements__column">
                     <h4>Required</h4>
                     <ul class="requirements__list">
-                        <li>✓ 18+ with reliable transportation</li>
-                        <li>✓ Pass background & drug screening</li>
-                        <li>✓ Eligible to work in the U.S.</li>
-                        <li>✓ Kind, patient, dependable</li>
+                        <li>&#10003; 18+ with reliable transportation</li>
+                        <li>&#10003; Pass background &amp; drug screening</li>
+                        <li>&#10003; Eligible to work in the U.S.</li>
+                        <li>&#10003; Kind, patient, dependable</li>
                     </ul>
                 </div>
                 <div class="requirements__column">
                     <h4>Nice to Have</h4>
                     <ul class="requirements__list requirements__list--optional">
-                        <li>★ CNA/HHA/PCA certification</li>
-                        <li>★ CPR/First Aid certification</li>
-                        <li>★ Dementia care experience</li>
-                        <li>★ Bilingual (Spanish, etc.)</li>
+                        <li>&#9733; CNA/HHA/PCA certification</li>
+                        <li>&#9733; CPR/First Aid certification</li>
+                        <li>&#9733; Dementia care experience</li>
+                        <li>&#9733; Bilingual (Spanish, etc.)</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Application Form - Card Based -->
+    <!-- Application Form -->
     <section class="apply-section" id="apply">
         <div class="container">
             <div class="section-header section-header--center">
@@ -123,17 +162,18 @@
                 <p class="section-subtitle">Takes about 2 minutes. We respond within one business day.</p>
             </div>
             
-            <form id="careers-form" class="apply-form-cards" action="https://formspree.io/f/maqyvorl" method="POST">
-                <div class="form-error" aria-live="polite"></div>
-                <div class="form-success-inline" aria-live="polite"></div>
+            <form id="careers-form" class="apply-form-cards" action="https://formspree.io/f/maqyvorl" method="POST" novalidate>
+                <div class="form-error" role="alert" aria-live="polite"></div>
+                <div class="form-success-inline" role="status" aria-live="polite"></div>
                 <input type="hidden" name="form_name" value="Caregiver Application">
-                <!-- Honeypot field to catch spam bots - hidden from real users -->
+                <input type="hidden" name="_subject" value="New Caregiver Application">
+                <!-- Honeypot spam protection -->
                 <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                 
                 <!-- Card 1: Basic Info -->
                 <div class="form-card">
                     <div class="form-card__header">
-                        <span class="form-card__number">1</span>
+                        <span class="form-card__number" aria-hidden="true">1</span>
                         <div>
                             <h3 class="form-card__title">Basic Info</h3>
                             <p class="form-card__desc">How can we reach you?</p>
@@ -142,27 +182,27 @@
                     <div class="form-card__body">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="first-name">First Name *</label>
-                                <input type="text" id="first-name" name="firstName" required placeholder="First name">
+                                <label for="first-name">First Name <span aria-hidden="true">*</span></label>
+                                <input type="text" id="first-name" name="firstName" required autocomplete="given-name" placeholder="First name" maxlength="50">
                             </div>
                             <div class="form-group">
-                                <label for="last-name">Last Name *</label>
-                                <input type="text" id="last-name" name="lastName" required placeholder="Last name">
+                                <label for="last-name">Last Name <span aria-hidden="true">*</span></label>
+                                <input type="text" id="last-name" name="lastName" required autocomplete="family-name" placeholder="Last name" maxlength="50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required placeholder="you@email.com">
+                                <label for="email">Email <span aria-hidden="true">*</span></label>
+                                <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@email.com" maxlength="100">
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone *</label>
-                                <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555">
+                                <label for="phone">Phone <span aria-hidden="true">*</span></label>
+                                <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555" maxlength="20">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="city">City *</label>
-                            <input type="text" id="city" name="city" required placeholder="Your city in Delaware">
+                            <label for="city">City <span aria-hidden="true">*</span></label>
+                            <input type="text" id="city" name="city" required autocomplete="address-level2" placeholder="Your city in Delaware" maxlength="50">
                         </div>
                     </div>
                 </div>
@@ -170,7 +210,7 @@
                 <!-- Card 2: Experience -->
                 <div class="form-card">
                     <div class="form-card__header">
-                        <span class="form-card__number">2</span>
+                        <span class="form-card__number" aria-hidden="true">2</span>
                         <div>
                             <h3 class="form-card__title">Experience</h3>
                             <p class="form-card__desc">Tell us about your background</p>
@@ -179,7 +219,7 @@
                     <div class="form-card__body">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="experience">Years of Caregiving *</label>
+                                <label for="experience">Years of Caregiving <span aria-hidden="true">*</span></label>
                                 <select id="experience" name="experience" required>
                                     <option value="">Select...</option>
                                     <option value="0-1">0-1 years (new to caregiving)</option>
@@ -201,7 +241,7 @@
                         </div>
                         <div class="form-group">
                             <label for="skills">Special Skills (optional)</label>
-                            <input type="text" id="skills" name="skills" placeholder="e.g., Bilingual Spanish, dementia care, hospice experience...">
+                            <input type="text" id="skills" name="skills" placeholder="e.g., Bilingual Spanish, dementia care, hospice experience..." maxlength="200">
                         </div>
                     </div>
                 </div>
@@ -209,7 +249,7 @@
                 <!-- Card 3: Availability -->
                 <div class="form-card">
                     <div class="form-card__header">
-                        <span class="form-card__number">3</span>
+                        <span class="form-card__number" aria-hidden="true">3</span>
                         <div>
                             <h3 class="form-card__title">Availability</h3>
                             <p class="form-card__desc">When can you work?</p>
@@ -218,7 +258,7 @@
                     <div class="form-card__body">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="hours">Weekly Hours Wanted *</label>
+                                <label for="hours">Weekly Hours Wanted <span aria-hidden="true">*</span></label>
                                 <select id="hours" name="hours" required>
                                     <option value="">Select...</option>
                                     <option value="under-20">Under 20 hours</option>
@@ -228,7 +268,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="start">Earliest Start Date *</label>
+                                <label for="start">Earliest Start Date <span aria-hidden="true">*</span></label>
                                 <select id="start" name="start" required>
                                     <option value="">Select...</option>
                                     <option value="asap">Immediately / ASAP</option>
@@ -239,7 +279,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="transport">Transportation *</label>
+                            <label for="transport">Transportation <span aria-hidden="true">*</span></label>
                             <select id="transport" name="transport" required>
                                 <option value="">Select...</option>
                                 <option value="car">I have my own car</option>
@@ -251,16 +291,16 @@
                     </div>
                 </div>
 
-                <!-- Final section: Notes & Submit -->
+                <!-- Final section -->
                 <div class="form-card form-card--final">
                     <div class="form-card__body">
                         <div class="form-group">
                             <label for="notes">Anything else we should know? (optional)</label>
-                            <textarea id="notes" name="notes" rows="3" placeholder="Schedule preferences, questions, or anything you'd like us to know..."></textarea>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Schedule preferences, questions, or anything you'd like us to know..." maxlength="1000"></textarea>
                         </div>
                         <div class="form-group form-group--checkbox">
                             <input type="checkbox" id="consent" name="consent" required>
-                            <label for="consent">I consent to the collection and use of my information as described in the <a href="privacy.html" target="_blank">Privacy Policy</a>.</label>
+                            <label for="consent">I consent to the collection and use of my information as described in the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</label>
                         </div>
                         <button type="submit" class="btn btn--primary btn--full btn--lg">Submit Application</button>
                         <p class="form-note">We typically respond within 1 business day.</p>
@@ -276,7 +316,7 @@
             <div class="footer__main">
                 <div class="footer__brand">
                     <a href="index.html" class="footer__logo">
-                        <span class="logo-icon">❦</span>
+                        <span class="logo-icon" aria-hidden="true">&#10086;</span>
                         <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
                     </a>
                     <p class="footer__tagline">Compassionate in-home care for your loved ones. Serving Delaware families with dignity and respect.</p>
@@ -310,7 +350,7 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p class="footer__copyright">© 2025 Phyllis Home Care. All rights reserved.</p>
+                <p class="footer__copyright">&copy; 2025 Phyllis Home Care. All rights reserved.</p>
                 <div class="footer__legal">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
@@ -319,15 +359,15 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
+    <!-- JavaScript - deferred -->
+    <script src="js/main.js" defer></script>
 
-    <!-- Floating CTA (mobile) -->
-    <a class="floating-cta" href="#apply">Apply Now</a>
+    <!-- Floating CTA -->
+    <a class="floating-cta" href="#apply" aria-label="Apply Now">Apply Now</a>
 
     <!-- Cookie Notice -->
     <div class="container cookie-wrapper">
-        <div id="cookie-notice" class="cookie-notice">
+        <div id="cookie-notice" class="cookie-notice" role="dialog" aria-label="Cookie consent">
             <p class="cookie-notice__text">This website uses essential cookies to ensure proper functionality. By using this site, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
             <button class="cookie-notice__button" data-cookie-dismiss>OK</button>
         </div>

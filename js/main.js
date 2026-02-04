@@ -1,219 +1,340 @@
 /**
  * PHYLLIS HOME CARE - Main JavaScript
- * Handles navigation, forms, and interactions
+ * Hardened for high-traffic scenarios
+ * - Rate limiting on form submissions
+ * - Debounced event handlers
+ * - Error boundaries
+ * - Memory leak prevention
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Chat widget (skip if disabled on this page)
-    if (!document.body.dataset.disableChat) {
-        const endpointMeta = document.querySelector('meta[name="chat-endpoint"]');
-        const CHAT_ENDPOINT = endpointMeta?.content || '';
-        const launcher = document.getElementById('chat-launcher');
-        const panel = document.getElementById('chat-panel');
-        const closeBtn = document.getElementById('chat-close');
-        const form = document.getElementById('chat-form');
-        const textarea = document.getElementById('chat-input');
-        const feed = document.getElementById('chat-messages');
-        const statusEl = document.getElementById('chat-status');
-
-        const appendMessage = (text, role = 'bot') => {
-            if (!feed) return;
-            const div = document.createElement('div');
-            div.className = 'chat-bubble chat-bubble--' + (role === 'user' ? 'user' : 'bot');
-            div.textContent = text;
-            feed.appendChild(div);
-            feed.scrollTop = feed.scrollHeight;
+(function() {
+    'use strict';
+    
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    
+    // Debounce function to limit rapid calls
+    function debounce(func, wait) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                func.apply(context, args);
+            }, wait);
         };
-
-        const setStatus = (text) => { if (statusEl) statusEl.textContent = text; };
-
-        const togglePanel = (open) => {
-            if (!panel || !launcher) return;
-            if (open) {
-                panel.classList.add('chat-panel--open');
-                launcher.setAttribute('aria-expanded', 'true');
-            } else {
-                panel.classList.remove('chat-panel--open');
-                launcher.setAttribute('aria-expanded', 'false');
+    }
+    
+    // Throttle function for scroll events
+    function throttle(func, limit) {
+        var inThrottle;
+        return function() {
+            var context = this, args = arguments;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(function() { inThrottle = false; }, limit);
             }
         };
-
-        if (launcher && panel) {
-            launcher.addEventListener('click', () => togglePanel(!panel.classList.contains('chat-panel--open')));
-        }
-        if (closeBtn) closeBtn.addEventListener('click', () => togglePanel(false));
-
-        if (form && textarea && feed) {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const message = textarea.value.trim();
-                if (!message) return;
-                appendMessage(message, 'user');
-                textarea.value = '';
-                setStatus('Sending...');
-
-                if (!CHAT_ENDPOINT) {
-                    appendMessage('Chat is setting up. Please call (302) 446-3986 or use the care form.', 'bot');
-                    setStatus('');
-                    return;
-                }
-
-                try {
-                    const res = await fetch(CHAT_ENDPOINT, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message })
-                    });
-                    const data = await res.json();
-                    appendMessage(data.reply || 'Thanks for reaching out. Please call (302) 446-3986.', 'bot');
-                } catch (err) {
-                    appendMessage('Thanks for reaching out. Our chat is currently in setup. Please call (302) 446-3986 or use the care request form.', 'bot');
-                } finally {
-                    setStatus('');
-                }
-            });
-        }
-    }
-
-    // Cookie notice persistence
-    const cookieBanner = document.getElementById('cookie-notice');
-    if (cookieBanner) {
-        const dismissBtn = cookieBanner.querySelector('[data-cookie-dismiss]');
-        if (localStorage.getItem('cookieDismissed') === 'true') {
-            cookieBanner.style.display = 'none';
-        }
-        if (dismissBtn) {
-            dismissBtn.addEventListener('click', () => {
-                cookieBanner.classList.add('hide');
-                localStorage.setItem('cookieDismissed', 'true');
-                setTimeout(() => {
-                    cookieBanner.style.display = 'none';
-                }, 300);
-            });
-        }
     }
     
-    // Mobile Navigation Toggle
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-        });
+    // Rate limiter for form submissions
+    var RateLimiter = {
+        submissions: {},
+        maxSubmissions: 3,
+        windowMs: 60000, // 1 minute
         
-        // Close menu when clicking a link
-        const navLinks = navMenu.querySelectorAll('.nav__link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-            });
-        });
-    }
-    
-    // Header scroll effect
-    const header = document.getElementById('header');
-    if (header) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        canSubmit: function(formId) {
+            var now = Date.now();
+            if (!this.submissions[formId]) {
+                this.submissions[formId] = [];
             }
-        });
-    }
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId !== '#') {
-                e.preventDefault();
-                const target = document.querySelector(targetId);
-                if (target) {
-                    const headerHeight = header ? header.offsetHeight : 0;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+            // Clean old entries
+            this.submissions[formId] = this.submissions[formId].filter(function(time) {
+                return now - time < this.windowMs;
+            }.bind(this));
+            
+            if (this.submissions[formId].length >= this.maxSubmissions) {
+                return false;
             }
-        });
-    });
+            this.submissions[formId].push(now);
+            return true;
+        }
+    };
     
-    // Fade in animations on scroll
-    const fadeElements = document.querySelectorAll('.fade-in');
-    if (fadeElements.length > 0) {
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    fadeObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        fadeElements.forEach(el => fadeObserver.observe(el));
+    // Safe DOM query
+    function $(selector, context) {
+        try {
+            return (context || document).querySelector(selector);
+        } catch (e) {
+            return null;
+        }
     }
     
-    // Form helper functions
-    const showFormError = (form, message) => {
-        const error = form.querySelector('.form-error');
+    function $$(selector, context) {
+        try {
+            return Array.prototype.slice.call((context || document).querySelectorAll(selector));
+        } catch (e) {
+            return [];
+        }
+    }
+    
+    // Safe event listener
+    function on(element, event, handler, options) {
+        if (element && typeof element.addEventListener === 'function') {
+            element.addEventListener(event, handler, options || false);
+            return function() {
+                element.removeEventListener(event, handler, options || false);
+            };
+        }
+        return function() {};
+    }
+    
+    // ============================================
+    // FORM HELPERS
+    // ============================================
+    
+    function showFormError(form, message) {
+        var error = $('.form-error', form);
         if (error) {
             error.textContent = message || '';
             error.style.display = message ? 'block' : 'none';
         }
-    };
+    }
     
-    const showFormSuccess = (form, message) => {
-        const success = form.querySelector('.form-success-inline');
+    function showFormSuccess(form, message) {
+        var success = $('.form-success-inline', form);
         if (success) {
             success.textContent = message || '';
             success.style.display = message ? 'block' : 'none';
         }
-    };
-
-    // Contact Form Handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+    }
+    
+    function validateEmail(email) {
+        if (!email) return true; // Optional field
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    function validatePhone(phone) {
+        if (!phone) return false;
+        var digits = phone.replace(/\D/g, '');
+        return digits.length >= 10;
+    }
+    
+    function sanitizeInput(str) {
+        if (!str) return '';
+        return str.replace(/<[^>]*>/g, '').trim().substring(0, 2000);
+    }
+    
+    // ============================================
+    // MAIN INITIALIZATION
+    // ============================================
+    
+    function init() {
+        initNavigation();
+        initScrollEffects();
+        initForms();
+        initCookieNotice();
+        initChat();
+        initPhoneFormatting();
+    }
+    
+    // ============================================
+    // NAVIGATION
+    // ============================================
+    
+    function initNavigation() {
+        var navToggle = $('#nav-toggle');
+        var navMenu = $('#nav-menu');
+        var header = $('#header');
+        
+        if (navToggle && navMenu) {
+            on(navToggle, 'click', function() {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
+                var expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !expanded);
+            });
+            
+            // Close menu on link click
+            $$('.nav__link', navMenu).forEach(function(link) {
+                on(link, 'click', function() {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+            
+            // Close menu on outside click
+            on(document, 'click', function(e) {
+                if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+        
+        // Smooth scroll for anchor links
+        $$('a[href^="#"]').forEach(function(anchor) {
+            on(anchor, 'click', function(e) {
+                var targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    var target = $(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        var headerHeight = header ? header.offsetHeight : 0;
+                        var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    }
+    
+    // ============================================
+    // SCROLL EFFECTS
+    // ============================================
+    
+    function initScrollEffects() {
+        var header = $('#header');
+        
+        if (header) {
+            var handleScroll = throttle(function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, 100);
+            
+            on(window, 'scroll', handleScroll, { passive: true });
+        }
+        
+        // Fade in animations with IntersectionObserver
+        if ('IntersectionObserver' in window) {
+            var fadeElements = $$('.fade-in');
+            if (fadeElements.length > 0) {
+                var fadeObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            fadeObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                fadeElements.forEach(function(el) {
+                    fadeObserver.observe(el);
+                });
+            }
+        }
+    }
+    
+    // ============================================
+    // FORMS
+    // ============================================
+    
+    function initForms() {
+        // Contact Form
+        var contactForm = $('#contact-form');
+        if (contactForm) {
+            initContactForm(contactForm);
+        }
+        
+        // Careers Form
+        var careersForm = $('#careers-form');
+        if (careersForm) {
+            initCareersForm(careersForm);
+        }
+    }
+    
+    function initContactForm(form) {
+        var isSubmitting = false;
+        
+        on(form, 'submit', function(e) {
             e.preventDefault();
             
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            showFormError(contactForm, '');
-            showFormSuccess(contactForm, '');
+            // Prevent double submission
+            if (isSubmitting) return;
             
-            // Validate required fields
-            if (!data.name || !data.phone) {
-                showFormError(contactForm, 'Please complete all required fields.');
+            // Rate limiting
+            if (!RateLimiter.canSubmit('contact-form')) {
+                showFormError(form, 'Too many submissions. Please wait a moment before trying again.');
                 return;
             }
             
-            // Validate consent checkbox
-            const consentBox = contactForm.querySelector('input[name="consent"]');
+            var formData = new FormData(form);
+            var data = {};
+            formData.forEach(function(value, key) {
+                data[key] = sanitizeInput(value);
+            });
+            
+            showFormError(form, '');
+            showFormSuccess(form, '');
+            
+            // Validation
+            if (!data.name || data.name.length < 2) {
+                showFormError(form, 'Please enter your name.');
+                return;
+            }
+            
+            if (!validatePhone(data.phone)) {
+                showFormError(form, 'Please enter a valid phone number.');
+                return;
+            }
+            
+            if (data.email && !validateEmail(data.email)) {
+                showFormError(form, 'Please enter a valid email address.');
+                return;
+            }
+            
+            var consentBox = $('input[name="consent"]', form);
             if (consentBox && !consentBox.checked) {
-                showFormError(contactForm, 'Please check the consent box.');
+                showFormError(form, 'Please check the consent box.');
                 return;
             }
             
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = 'Sending...';
-            submitBtn.disabled = true;
+            // Honeypot check
+            var honeypot = $('input[name="_gotcha"]', form);
+            if (honeypot && honeypot.value) {
+                // Bot detected, silently fail
+                showFormSuccess(form, 'Message sent! We will call you shortly.');
+                form.reset();
+                return;
+            }
             
-            // Get form action URL - use Formspree endpoint
-            const formAction = contactForm.getAttribute('action') || 'https://formspree.io/f/maqyvorl';
+            var submitBtn = $('button[type="submit"]', form);
+            var originalText = submitBtn ? submitBtn.innerHTML : '';
+            
+            if (submitBtn) {
+                submitBtn.innerHTML = 'Sending...';
+                submitBtn.disabled = true;
+            }
+            
+            isSubmitting = true;
+            
+            var formAction = form.getAttribute('action') || 'https://formspree.io/f/maqyvorl';
+            
+            // Create clean FormData
+            var cleanFormData = new FormData();
+            for (var key in data) {
+                if (data.hasOwnProperty(key) && key !== '_gotcha') {
+                    cleanFormData.append(key, data[key]);
+                }
+            }
             
             fetch(formAction, {
                 method: 'POST',
-                body: formData,
+                body: cleanFormData,
                 headers: { 'Accept': 'application/json' }
             })
             .then(function(response) {
@@ -222,264 +343,300 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 return response.json();
             })
-            .then(function(data) {
-                contactForm.reset();
-                showFormSuccess(contactForm, 'Message sent! We will call you shortly.');
+            .then(function() {
+                form.reset();
+                showFormSuccess(form, 'Message sent! We will call you shortly.');
             })
             .catch(function(err) {
                 console.error('Form submission error:', err);
-                showFormError(contactForm, 'Something went wrong. Please call us at (302) 446-3986.');
+                showFormError(form, 'Something went wrong. Please call us at (302) 446-3986.');
             })
             .finally(function() {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-    }
-    
-    // Phone number formatting
-    const phoneInputs = document.querySelectorAll('input[type="tel"]');
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0) {
-                if (value.length <= 3) {
-                    value = '(' + value;
-                } else if (value.length <= 6) {
-                    value = '(' + value.slice(0, 3) + ') ' + value.slice(3);
-                } else {
-                    value = '(' + value.slice(0, 3) + ') ' + value.slice(3, 6) + '-' + value.slice(6, 10);
-                }
-            }
-            e.target.value = value;
-        });
-    });
-});
-
-/**
- * Multi-step Form Handler for Apply page
- */
-class MultiStepForm {
-    constructor(formElement) {
-        this.form = formElement;
-        this.sections = this.form.querySelectorAll('.form-section');
-        this.progressSteps = this.form.parentElement.querySelectorAll('.progress-step, .step-btn');
-        this.currentStep = 0;
-        
-        this.init();
-    }
-    
-    init() {
-        this.showSection(0);
-        
-        if (this.progressSteps.length) {
-            this.progressSteps.forEach((stepBtn, index) => {
-                stepBtn.addEventListener('click', () => this.showSection(index));
-            });
-        }
-        
-        this.form.addEventListener('click', (e) => {
-            if (e.target.matches('[data-action="next"]')) {
-                e.preventDefault();
-                if (this.validateCurrentSection()) {
-                    this.nextSection();
-                }
-            }
-            
-            if (e.target.matches('[data-action="prev"]')) {
-                e.preventDefault();
-                this.prevSection();
-            }
-        });
-        
-        this.form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (this.validateCurrentSection()) {
-                this.submitForm();
-            }
-        });
-    }
-    
-    showSection(index) {
-        this.sections.forEach((section, i) => {
-            section.classList.remove('active');
-            if (this.progressSteps[i]) {
-                this.progressSteps[i].classList.remove('active');
-                this.progressSteps[i].classList.remove('step-btn--active');
-                if (i < index) {
-                    this.progressSteps[i].classList.add('completed');
-                } else {
-                    this.progressSteps[i].classList.remove('completed');
-                }
-            }
-        });
-        
-        if (this.sections[index]) {
-            this.sections[index].classList.add('active');
-        }
-        if (this.progressSteps[index]) {
-            this.progressSteps[index].classList.add('active');
-            this.progressSteps[index].classList.add('step-btn--active');
-        }
-        
-        this.currentStep = index;
-        
-        const prevBtn = this.form.querySelector('.prev-btn');
-        const nextBtn = this.form.querySelector('.next-btn');
-        const submitBtn = this.form.querySelector('.submit-btn');
-        
-        if (prevBtn) {
-            prevBtn.style.display = index === 0 ? 'none' : 'inline-flex';
-        }
-        if (nextBtn) {
-            nextBtn.style.display = index === this.sections.length - 1 ? 'none' : 'inline-flex';
-        }
-        if (submitBtn) {
-            submitBtn.style.display = index === this.sections.length - 1 ? 'inline-flex' : 'none';
-        }
-        
-        this.form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    
-    nextSection() {
-        if (this.currentStep < this.sections.length - 1) {
-            this.showSection(this.currentStep + 1);
-        }
-    }
-    
-    prevSection() {
-        if (this.currentStep > 0) {
-            this.showSection(this.currentStep - 1);
-        }
-    }
-    
-    validateCurrentSection() {
-        const currentSection = this.sections[this.currentStep];
-        const requiredFields = currentSection.querySelectorAll('[required]');
-        let isValid = true;
-        
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.classList.add('error');
-                field.addEventListener('input', () => {
-                    field.classList.remove('error');
-                }, { once: true });
-            }
-        });
-        
-        if (!isValid) {
-            const errorBox = this.form.querySelector('.form-error');
-            if (errorBox) {
-                errorBox.textContent = 'Please complete the highlighted fields.';
-                errorBox.style.display = 'block';
-            }
-            return false;
-        } else {
-            const errorBox = this.form.querySelector('.form-error');
-            if (errorBox) {
-                errorBox.style.display = 'none';
-            }
-        }
-        
-        const consent = this.form.querySelector('input[name="consent"]');
-        if (consent && !consent.checked) {
-            const errorBox = this.form.querySelector('.form-error');
-            if (errorBox) {
-                errorBox.textContent = 'Please check the consent box.';
-                errorBox.style.display = 'block';
-            }
-            return false;
-        }
-
-        return isValid;
-    }
-    
-    submitForm() {
-        const formData = new FormData(this.form);
-        
-        const submitBtn = this.form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Submitting...';
-        submitBtn.disabled = true;
-        
-        fetch(this.form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (!response.ok) throw new Error('Network error');
-            this.form.style.display = 'none';
-            const successMessage = this.form.parentElement.querySelector('.form-success');
-            if (successMessage) {
-                successMessage.style.display = 'block';
-                successMessage.classList.add('active');
-            }
-        }).catch(() => {
-            const errorBox = this.form.querySelector('.form-error');
-            if (errorBox) {
-                errorBox.textContent = 'Something went wrong. Please try again.';
-                errorBox.style.display = 'block';
-            }
-        }).finally(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        });
-    }
-}
-
-// Initialize multi-step form if present
-document.addEventListener('DOMContentLoaded', function() {
-    const multiStepForms = document.querySelectorAll('.apply-form, .multi-step');
-    multiStepForms.forEach(form => new MultiStepForm(form));
-});
-
-/**
- * Caregiver Application Form Handler
- */
-document.addEventListener('DOMContentLoaded', function() {
-    const caregiverForm = document.getElementById('caregiver-form');
-    if (caregiverForm) {
-        const fileInput = caregiverForm.querySelector('input[type="file"]');
-        if (fileInput) {
-            fileInput.addEventListener('change', function(e) {
-                const fileName = e.target.files[0]?.name;
-                const label = fileInput.closest('.file-upload')?.querySelector('.file-upload__text');
-                if (label && fileName) {
-                    label.textContent = fileName;
+                isSubmitting = false;
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
                 }
             });
-        }
+        });
+    }
+    
+    function initCareersForm(form) {
+        var isSubmitting = false;
         
-        caregiverForm.addEventListener('submit', function(e) {
+        on(form, 'submit', function(e) {
             e.preventDefault();
             
-            const formData = new FormData(caregiverForm);
-            const requiredFields = caregiverForm.querySelectorAll('[required]');
-            let isValid = true;
+            if (isSubmitting) return;
             
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('error');
-                }
-            });
-            
-            if (!isValid) {
-                alert('Please fill in all required fields.');
+            if (!RateLimiter.canSubmit('careers-form')) {
+                showFormError(form, 'Too many submissions. Please wait a moment before trying again.');
                 return;
             }
             
-            const submitBtn = caregiverForm.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = 'Submitting Application...';
-            submitBtn.disabled = true;
+            var formData = new FormData(form);
+            var data = {};
+            formData.forEach(function(value, key) {
+                data[key] = sanitizeInput(value);
+            });
             
-            setTimeout(() => {
-                alert('Thank you for your application! Our hiring team will review your information and contact you within 3-5 business days.');
-                caregiverForm.reset();
-                submitBtn.innerHTML = 'Submit Application';
-                submitBtn.disabled = false;
-            }, 2000);
+            showFormError(form, '');
+            showFormSuccess(form, '');
+            
+            // Validation
+            if (!data.firstName || !data.lastName) {
+                showFormError(form, 'Please enter your full name.');
+                return;
+            }
+            
+            if (!validatePhone(data.phone)) {
+                showFormError(form, 'Please enter a valid phone number.');
+                return;
+            }
+            
+            if (!validateEmail(data.email)) {
+                showFormError(form, 'Please enter a valid email address.');
+                return;
+            }
+            
+            var consentBox = $('input[name="consent"]', form);
+            if (consentBox && !consentBox.checked) {
+                showFormError(form, 'Please check the consent box.');
+                return;
+            }
+            
+            // Honeypot check
+            var honeypot = $('input[name="_gotcha"]', form);
+            if (honeypot && honeypot.value) {
+                showFormSuccess(form, 'Application submitted! We will be in touch soon.');
+                form.reset();
+                return;
+            }
+            
+            var submitBtn = $('button[type="submit"]', form);
+            var originalText = submitBtn ? submitBtn.innerHTML : '';
+            
+            if (submitBtn) {
+                submitBtn.innerHTML = 'Submitting...';
+                submitBtn.disabled = true;
+            }
+            
+            isSubmitting = true;
+            
+            var formAction = form.getAttribute('action') || 'https://formspree.io/f/maqyvorl';
+            
+            var cleanFormData = new FormData();
+            for (var key in data) {
+                if (data.hasOwnProperty(key) && key !== '_gotcha') {
+                    cleanFormData.append(key, data[key]);
+                }
+            }
+            
+            fetch(formAction, {
+                method: 'POST',
+                body: cleanFormData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function() {
+                form.reset();
+                showFormSuccess(form, 'Application submitted! We will contact you within 1 business day.');
+            })
+            .catch(function(err) {
+                console.error('Form submission error:', err);
+                showFormError(form, 'Something went wrong. Please call us at (302) 446-3986.');
+            })
+            .finally(function() {
+                isSubmitting = false;
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
         });
     }
-});
+    
+    // ============================================
+    // PHONE FORMATTING
+    // ============================================
+    
+    function initPhoneFormatting() {
+        var phoneInputs = $$('input[type="tel"]');
+        
+        phoneInputs.forEach(function(input) {
+            on(input, 'input', debounce(function(e) {
+                var value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value.length <= 3) {
+                        value = '(' + value;
+                    } else if (value.length <= 6) {
+                        value = '(' + value.slice(0, 3) + ') ' + value.slice(3);
+                    } else {
+                        value = '(' + value.slice(0, 3) + ') ' + value.slice(3, 6) + '-' + value.slice(6, 10);
+                    }
+                }
+                e.target.value = value;
+            }, 50));
+        });
+    }
+    
+    // ============================================
+    // COOKIE NOTICE
+    // ============================================
+    
+    function initCookieNotice() {
+        var cookieBanner = $('#cookie-notice');
+        if (!cookieBanner) return;
+        
+        try {
+            if (localStorage.getItem('cookieDismissed') === 'true') {
+                cookieBanner.style.display = 'none';
+                return;
+            }
+        } catch (e) {
+            // localStorage not available
+        }
+        
+        var dismissBtn = $('[data-cookie-dismiss]', cookieBanner);
+        if (dismissBtn) {
+            on(dismissBtn, 'click', function() {
+                cookieBanner.classList.add('hide');
+                try {
+                    localStorage.setItem('cookieDismissed', 'true');
+                } catch (e) {}
+                setTimeout(function() {
+                    cookieBanner.style.display = 'none';
+                }, 300);
+            });
+        }
+    }
+    
+    // ============================================
+    // CHAT WIDGET
+    // ============================================
+    
+    function initChat() {
+        if (document.body.dataset.disableChat) return;
+        
+        var endpointMeta = $('meta[name="chat-endpoint"]');
+        var CHAT_ENDPOINT = endpointMeta ? endpointMeta.getAttribute('content') : '';
+        
+        var launcher = $('#chat-launcher');
+        var panel = $('#chat-panel');
+        var closeBtn = $('#chat-close');
+        var textarea = $('#chat-input');
+        var feed = $('#chat-messages');
+        var sendBtn = $('#chat-send');
+        var statusEl = $('#chat-status');
+        
+        if (!launcher || !panel) return;
+        
+        var isChatting = false;
+        
+        function appendMessage(text, role) {
+            if (!feed) return;
+            var div = document.createElement('div');
+            div.className = 'chat-bubble chat-bubble--' + (role === 'user' ? 'user' : 'bot');
+            div.textContent = sanitizeInput(text);
+            feed.appendChild(div);
+            feed.scrollTop = feed.scrollHeight;
+        }
+        
+        function setStatus(text) {
+            if (statusEl) statusEl.textContent = text || '';
+        }
+        
+        function togglePanel(open) {
+            if (open) {
+                panel.classList.add('chat-panel--open');
+                panel.setAttribute('aria-hidden', 'false');
+                launcher.setAttribute('aria-expanded', 'true');
+                if (textarea) textarea.focus();
+            } else {
+                panel.classList.remove('chat-panel--open');
+                panel.setAttribute('aria-hidden', 'true');
+                launcher.setAttribute('aria-expanded', 'false');
+            }
+        }
+        
+        on(launcher, 'click', function() {
+            togglePanel(!panel.classList.contains('chat-panel--open'));
+        });
+        
+        on(closeBtn, 'click', function() {
+            togglePanel(false);
+        });
+        
+        // Close on Escape
+        on(document, 'keydown', function(e) {
+            if (e.key === 'Escape' && panel.classList.contains('chat-panel--open')) {
+                togglePanel(false);
+            }
+        });
+        
+        function sendMessage() {
+            if (!textarea || isChatting) return;
+            
+            var message = sanitizeInput(textarea.value);
+            if (!message) return;
+            
+            appendMessage(message, 'user');
+            textarea.value = '';
+            setStatus('Sending...');
+            isChatting = true;
+            
+            if (!CHAT_ENDPOINT || CHAT_ENDPOINT === '__CHAT_ENDPOINT__') {
+                appendMessage('Chat is setting up. Please call (302) 446-3986 or use the care form.', 'bot');
+                setStatus('');
+                isChatting = false;
+                return;
+            }
+            
+            fetch(CHAT_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                appendMessage(data.reply || 'Thanks for reaching out. Please call (302) 446-3986.', 'bot');
+            })
+            .catch(function() {
+                appendMessage('Thanks for reaching out. Please call (302) 446-3986 or use the care request form.', 'bot');
+            })
+            .finally(function() {
+                setStatus('');
+                isChatting = false;
+            });
+        }
+        
+        if (sendBtn) {
+            on(sendBtn, 'click', sendMessage);
+        }
+        
+        if (textarea) {
+            on(textarea, 'keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+    }
+    
+    // ============================================
+    // START
+    // ============================================
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+})();

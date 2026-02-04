@@ -5,19 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phyllis Home Care | Compassionate In-Home Care in Delaware</title>
     <meta name="description" content="Professional in-home care services in Delaware. Companion care, personal care, memory support, and 24-hour care. Call (302) 446-3986 for a free consultation.">
+    
+    <!-- Performance: DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//formspree.io">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Performance: Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Fonts with display swap for faster rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- SEO & Social -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Phyllis Home Care">
+    <link rel="canonical" href="https://phyllishomecare.com/">
+    <meta property="og:title" content="Phyllis Home Care | Compassionate In-Home Care">
+    <meta property="og:description" content="Professional in-home care services in Delaware. Call (302) 446-3986.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phyllishomecare.com/">
+    
+    <!-- Security Headers (handled by server, but good practice) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Cache Control hint -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    
     <meta name="chat-endpoint" content="__CHAT_ENDPOINT__">
-    <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c07a1b1dac8c4518901e3ebe5208269e"}'></script><!-- End Cloudflare Web Analytics -->
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Cloudflare Web Analytics - deferred -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c07a1b1dac8c4518901e3ebe5208269e"}'></script>
+    
+    <!-- Critical CSS inline for above-fold content -->
+    <style>
+        /* Critical path CSS - minimal styles for first paint */
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Outfit',system-ui,-apple-system,sans-serif;line-height:1.6;color:#1a1a1a}
+        .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+        .nav{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:1rem}
+        .hero{min-height:100vh;display:flex;align-items:center;padding-top:80px}
+        .container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.5rem;border-radius:8px;font-weight:500;text-decoration:none;transition:all .2s}
+        .btn--primary{background:#2D5A4A;color:#fff}
+        .btn--primary:hover{background:#234539}
+    </style>
+    
+    <!-- Main stylesheet - non-blocking -->
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
 </head>
 <body>
     <!-- Navigation -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="index.html" class="nav__logo">
-                <span class="logo-icon">❦</span>
+                <span class="logo-icon">&#10086;</span>
                 <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
             </a>
             <ul class="nav__menu" id="nav-menu">
@@ -29,14 +77,14 @@
             </ul>
             <div class="nav__actions">
                 <a href="tel:+1-302-446-3986" class="nav__phone">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
-                    (302) 446-3986
+                    <span>(302) 446-3986</span>
                 </a>
                 <a href="#contact" class="btn btn--primary nav__cta">Get Started</a>
             </div>
-            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -87,8 +135,8 @@
             </div>
             <div class="services__grid">
                 <!-- Companion Care -->
-                <div class="service-card">
-                    <div class="service-card__icon">
+                <article class="service-card">
+                    <div class="service-card__icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                             <circle cx="9" cy="7" r="4"/>
@@ -102,16 +150,16 @@
                         that brightens every day.
                     </p>
                     <ul class="service-card__features">
-                        <li>Social engagement & conversation</li>
+                        <li>Social engagement &amp; conversation</li>
                         <li>Light meal preparation</li>
-                        <li>Errands & transportation</li>
+                        <li>Errands &amp; transportation</li>
                     </ul>
-                </div>
+                </article>
 
                 <!-- Personal Care -->
-                <div class="service-card service-card--featured">
+                <article class="service-card service-card--featured">
                     <span class="service-card__badge">Most Requested</span>
-                    <div class="service-card__icon">
+                    <div class="service-card__icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                         </svg>
@@ -122,15 +170,15 @@
                         independence while ensuring safety.
                     </p>
                     <ul class="service-card__features">
-                        <li>Bathing & grooming assistance</li>
-                        <li>Dressing & mobility support</li>
+                        <li>Bathing &amp; grooming assistance</li>
+                        <li>Dressing &amp; mobility support</li>
                         <li>Medication reminders</li>
                     </ul>
-                </div>
+                </article>
 
                 <!-- Memory Care -->
-                <div class="service-card">
-                    <div class="service-card__icon">
+                <article class="service-card">
+                    <div class="service-card__icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M12 6v6l4 2"/>
@@ -144,19 +192,19 @@
                     <ul class="service-card__features">
                         <li>Cognitive stimulation activities</li>
                         <li>Safety monitoring</li>
-                        <li>Family education & support</li>
+                        <li>Family education &amp; support</li>
                     </ul>
-                </div>
+                </article>
 
                 <!-- 24-Hour Care -->
-                <div class="service-card">
-                    <div class="service-card__icon">
+                <article class="service-card">
+                    <div class="service-card__icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                             <polyline points="9 22 9 12 15 12 15 22"/>
                         </svg>
                     </div>
-                    <h3 class="service-card__title">24-Hour & Live-In Care</h3>
+                    <h3 class="service-card__title">24-Hour &amp; Live-In Care</h3>
                     <p class="service-card__desc">
                         Round-the-clock support for those who need continuous assistance 
                         and overnight supervision.
@@ -166,11 +214,11 @@
                         <li>Overnight supervision</li>
                         <li>Emergency response</li>
                     </ul>
-                </div>
+                </article>
 
                 <!-- Homemaker Services -->
-                <div class="service-card">
-                    <div class="service-card__icon">
+                <article class="service-card">
+                    <div class="service-card__icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                             <line x1="3" y1="9" x2="21" y2="9"/>
@@ -184,14 +232,14 @@
                     </p>
                     <ul class="service-card__features">
                         <li>Light housekeeping</li>
-                        <li>Laundry & linens</li>
+                        <li>Laundry &amp; linens</li>
                         <li>Grocery shopping</li>
                     </ul>
-                </div>
+                </article>
 
                 <!-- Respite Care -->
-                <div class="service-card">
-                    <div class="service-card__icon">
+                <article class="service-card">
+                    <div class="service-card__icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
                             <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
@@ -210,7 +258,7 @@
                         <li>Short-term or recurring</li>
                         <li>Emergency backup care</li>
                     </ul>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -220,7 +268,7 @@
         <div class="container about__container">
             <div class="about__image">
                 <div class="about__image-main">
-                    <img src="images/about-hands.svg" alt="Diverse hands coming together in care - representing universal compassion">
+                    <img src="images/about-hands.svg" alt="Diverse hands coming together in care - representing universal compassion" loading="lazy" width="500" height="400">
                 </div>
             </div>
             <div class="about__content">
@@ -239,21 +287,21 @@
                 </p>
                 <div class="about__values">
                     <div class="value-item">
-                        <div class="value-icon">♡</div>
+                        <div class="value-icon" aria-hidden="true">&#9825;</div>
                         <div class="value-content">
                             <h4>Compassion First</h4>
                             <p>Every interaction guided by genuine care and empathy</p>
                         </div>
                     </div>
                     <div class="value-item">
-                        <div class="value-icon">✓</div>
+                        <div class="value-icon" aria-hidden="true">&#10003;</div>
                         <div class="value-content">
-                            <h4>Trusted & Vetted</h4>
+                            <h4>Trusted &amp; Vetted</h4>
                             <p>Rigorous screening, background checks, and ongoing training</p>
                         </div>
                     </div>
                     <div class="value-item">
-                        <div class="value-icon">⚡</div>
+                        <div class="value-icon" aria-hidden="true">&#9889;</div>
                         <div class="value-content">
                             <h4>Always Available</h4>
                             <p>24/7 support because care needs don't follow a schedule</p>
@@ -294,7 +342,7 @@
                 <div class="process__step">
                     <span class="step__number">04</span>
                     <h3 class="step__title">Care Begins</h3>
-                    <p class="step__desc">Care starts within 48–72 hours. We check in and adjust as needed.</p>
+                    <p class="step__desc">Care starts within 48-72 hours. We check in and adjust as needed.</p>
                 </div>
             </div>
             <div class="process__cta">
@@ -330,7 +378,7 @@
                 </p>
                 <div class="contact__methods">
                     <div class="contact-method">
-                        <div class="contact-method__icon">
+                        <div class="contact-method__icon" aria-hidden="true">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                             </svg>
@@ -341,7 +389,7 @@
                         </div>
                     </div>
                     <div class="contact-method">
-                        <div class="contact-method__icon">
+                        <div class="contact-method__icon" aria-hidden="true">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
@@ -353,7 +401,7 @@
                         </div>
                     </div>
                     <div class="contact-method">
-                        <div class="contact-method__icon">
+                        <div class="contact-method__icon" aria-hidden="true">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                                 <circle cx="12" cy="10" r="3"/>
@@ -361,32 +409,33 @@
                         </div>
                         <div>
                             <span class="contact-method__label">Service Area</span>
-                            <span class="contact-method__value">Delaware & Surrounding Areas</span>
+                            <span class="contact-method__value">Delaware &amp; Surrounding Areas</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="contact__form-wrapper">
                 <h3 class="contact-form__title">Request a Free Consultation</h3>
-                <form id="contact-form" class="contact-form" action="https://formspree.io/f/maqyvorl" method="POST">
-                    <div class="form-error" aria-live="polite"></div>
-                    <div class="form-success-inline" aria-live="polite"></div>
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/maqyvorl" method="POST" novalidate>
+                    <div class="form-error" role="alert" aria-live="polite"></div>
+                    <div class="form-success-inline" role="status" aria-live="polite"></div>
                     <input type="hidden" name="form_name" value="Contact Form - Homepage">
-                    <!-- Honeypot field to catch spam bots - hidden from real users -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission">
+                    <!-- Honeypot spam protection -->
                     <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Your Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Full name">
+                            <label for="name">Your Name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Full name" maxlength="100">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="(555) 555-5555">
+                            <label for="phone">Phone <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555" maxlength="20">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="you@email.com">
+                        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@email.com" maxlength="100">
                     </div>
                     <div class="form-group">
                         <label for="service">What type of care do you need?</label>
@@ -403,13 +452,13 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Tell us about your situation</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Brief description of your care needs, timeline, or any questions..."></textarea>
+                        <textarea id="message" name="message" rows="4" placeholder="Brief description of your care needs, timeline, or any questions..." maxlength="2000"></textarea>
                     </div>
                     <div class="form-group form-group--checkbox">
                         <input type="checkbox" id="consent" name="consent" required>
                         <label for="consent">
                             I consent to the collection and use of my information as described in the 
-                            <a href="privacy.html" target="_blank">Privacy Policy</a>.
+                            <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
                         </label>
                     </div>
                     <button type="submit" class="btn btn--primary btn--full">Send Request</button>
@@ -424,7 +473,7 @@
             <div class="footer__main">
                 <div class="footer__brand">
                     <a href="index.html" class="footer__logo">
-                        <span class="logo-icon">❦</span>
+                        <span class="logo-icon" aria-hidden="true">&#10086;</span>
                         <span class="logo-text">Phyllis<span class="logo-accent">Home Care</span></span>
                     </a>
                     <p class="footer__tagline">
@@ -462,7 +511,7 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p class="footer__copyright">© 2025 Phyllis Home Care. All rights reserved.</p>
+                <p class="footer__copyright">&copy; 2025 Phyllis Home Care. All rights reserved.</p>
                 <div class="footer__legal">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
@@ -471,14 +520,15 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- JavaScript - deferred for performance -->
+    <script src="js/main.js" defer></script>
     
     <!-- Floating CTA (mobile) -->
-    <a class="floating-cta" href="#contact">Get Started</a>
+    <a class="floating-cta" href="#contact" aria-label="Get Started - Request Care">Get Started</a>
     
     <!-- Cookie Notice -->
     <div class="container cookie-wrapper">
-        <div id="cookie-notice" class="cookie-notice">
+        <div id="cookie-notice" class="cookie-notice" role="dialog" aria-label="Cookie consent">
             <p class="cookie-notice__text">
                 This website uses essential cookies to ensure proper functionality. We do not use cookies for advertising or tracking.
                 By using this site, you agree to our <a href="privacy.html">Privacy Policy</a>.
@@ -488,26 +538,27 @@
     </div>
     
     <!-- Chat Widget -->
-    <button class="chat-launcher" id="chat-launcher" aria-expanded="false">
-        <span class="chat-launcher__dot"></span>
-        Chat with us
+    <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-label="Open chat">
+        <span class="chat-launcher__dot" aria-hidden="true"></span>
+        <span>Chat with us</span>
     </button>
-    <div class="chat-panel" id="chat-panel" aria-live="polite">
+    <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Chat with Phyllis Home Care" aria-hidden="true">
         <div class="chat-panel__header">
             <div class="chat-panel__title">Phyllis Home Care</div>
-            <button class="chat-panel__close" id="chat-close">Close</button>
+            <button class="chat-panel__close" id="chat-close" aria-label="Close chat">Close</button>
         </div>
         <div class="chat-panel__body">
-            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-messages" id="chat-messages" role="log" aria-live="polite"></div>
             <div class="chat-input">
-                <textarea id="chat-input" placeholder="Type your question..." rows="2"></textarea>
-                <button id="chat-send" form="chat-form">Send</button>
+                <label for="chat-input" class="sr-only">Type your message</label>
+                <textarea id="chat-input" placeholder="Type your question..." rows="2" maxlength="1000"></textarea>
+                <button id="chat-send" type="button">Send</button>
             </div>
-            <div class="chat-status" id="chat-status"></div>
+            <div class="chat-status" id="chat-status" aria-live="polite"></div>
         </div>
-        <form id="chat-form" style="display:none"></form>
     </div>
+    
+    <!-- Screen reader only class -->
+    <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 </body>
 </html>
-   
- 
