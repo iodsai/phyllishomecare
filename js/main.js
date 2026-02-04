@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const appendMessage = (text, role = 'bot') => {
             if (!feed) return;
             const div = document.createElement('div');
-            div.className = `chat-bubble chat-bubble--${role === 'user' ? 'user' : 'bot'}`;
+            div.className = 'chat-bubble chat-bubble--' + (role === 'user' ? 'user' : 'bot');
             div.textContent = text;
             feed.appendChild(div);
             feed.scrollTop = feed.scrollHeight;
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const data = await res.json();
                     appendMessage(data.reply || 'Thanks for reaching out. Please call (302) 446-3986.', 'bot');
                 } catch (err) {
-                    appendMessage('Thanks for reaching out. Our chat is currently in setup. Please call (302) 446-3986 or use the care request form and we’ll respond quickly.', 'bot');
+                    appendMessage('Thanks for reaching out. Our chat is currently in setup. Please call (302) 446-3986 or use the care request form.', 'bot');
                 } finally {
                     setStatus('');
                 }
@@ -78,12 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cookie notice persistence
     const cookieBanner = document.getElementById('cookie-notice');
     if (cookieBanner) {
-        const closeBtn = cookieBanner.querySelector('[data-cookie-dismiss]');
+        const dismissBtn = cookieBanner.querySelector('[data-cookie-dismiss]');
         if (localStorage.getItem('cookieDismissed') === 'true') {
             cookieBanner.style.display = 'none';
         }
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', () => {
                 cookieBanner.classList.add('hide');
                 localStorage.setItem('cookieDismissed', 'true');
                 setTimeout(() => {
@@ -162,18 +162,19 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeElements.forEach(el => fadeObserver.observe(el));
     }
     
-    const showFormError = (form, message = '') => {
+    // Form helper functions
+    const showFormError = (form, message) => {
         const error = form.querySelector('.form-error');
         if (error) {
-            error.textContent = message;
+            error.textContent = message || '';
             error.style.display = message ? 'block' : 'none';
         }
     };
     
-    const showFormSuccess = (form, message = '') => {
+    const showFormSuccess = (form, message) => {
         const success = form.querySelector('.form-success-inline');
         if (success) {
-            success.textContent = message;
+            success.textContent = message || '';
             success.style.display = message ? 'block' : 'none';
         }
     };
@@ -189,10 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
             showFormError(contactForm, '');
             showFormSuccess(contactForm, '');
             
+            // Validate required fields
             if (!data.name || !data.phone) {
                 showFormError(contactForm, 'Please complete all required fields.');
                 return;
             }
+            
+            // Validate consent checkbox
             const consentBox = contactForm.querySelector('input[name="consent"]');
             if (consentBox && !consentBox.checked) {
                 showFormError(contactForm, 'Please check the consent box.');
@@ -204,17 +208,29 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = 'Sending...';
             submitBtn.disabled = true;
             
-            fetch(contactForm.action, {
+            // Get form action URL - use Formspree endpoint
+            const formAction = contactForm.getAttribute('action') || 'https://formspree.io/f/maqyvorl';
+            
+            fetch(formAction, {
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function(data) {
                 contactForm.reset();
-                showFormSuccess(contactForm, 'Message sent! We’ll call you shortly.');
-            }).catch(() => {
-                showFormError(contactForm, 'Something went wrong. Please call us or try again.');
-            }).finally(() => {
+                showFormSuccess(contactForm, 'Message sent! We will call you shortly.');
+            })
+            .catch(function(err) {
+                console.error('Form submission error:', err);
+                showFormError(contactForm, 'Something went wrong. Please call us at (302) 446-3986.');
+            })
+            .finally(function() {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
@@ -228,11 +244,11 @@ document.addEventListener('DOMContentLoaded', function() {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 0) {
                 if (value.length <= 3) {
-                    value = `(${value}`;
+                    value = '(' + value;
                 } else if (value.length <= 6) {
-                    value = `(${value.slice(0, 3)}) ${value.slice(3)}`;
+                    value = '(' + value.slice(0, 3) + ') ' + value.slice(3);
                 } else {
-                    value = `(${value.slice(0, 3)}) ${value.slice(3, 6)}-${value.slice(6, 10)}`;
+                    value = '(' + value.slice(0, 3) + ') ' + value.slice(3, 6) + '-' + value.slice(6, 10);
                 }
             }
             e.target.value = value;
@@ -254,17 +270,14 @@ class MultiStepForm {
     }
     
     init() {
-        // Show first section
         this.showSection(0);
         
-        // Allow clicking progress/step pills
         if (this.progressSteps.length) {
             this.progressSteps.forEach((stepBtn, index) => {
                 stepBtn.addEventListener('click', () => this.showSection(index));
             });
         }
         
-        // Handle next/prev buttons
         this.form.addEventListener('click', (e) => {
             if (e.target.matches('[data-action="next"]')) {
                 e.preventDefault();
@@ -279,7 +292,6 @@ class MultiStepForm {
             }
         });
         
-        // Handle form submission
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             if (this.validateCurrentSection()) {
@@ -289,7 +301,6 @@ class MultiStepForm {
     }
     
     showSection(index) {
-        // Hide all sections
         this.sections.forEach((section, i) => {
             section.classList.remove('active');
             if (this.progressSteps[i]) {
@@ -303,7 +314,6 @@ class MultiStepForm {
             }
         });
         
-        // Show current section
         if (this.sections[index]) {
             this.sections[index].classList.add('active');
         }
@@ -314,7 +324,6 @@ class MultiStepForm {
         
         this.currentStep = index;
         
-        // Toggle action buttons
         const prevBtn = this.form.querySelector('.prev-btn');
         const nextBtn = this.form.querySelector('.next-btn');
         const submitBtn = this.form.querySelector('.submit-btn');
@@ -329,7 +338,6 @@ class MultiStepForm {
             submitBtn.style.display = index === this.sections.length - 1 ? 'inline-flex' : 'none';
         }
         
-        // Scroll to top of form
         this.form.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     
@@ -373,7 +381,7 @@ class MultiStepForm {
                 errorBox.style.display = 'none';
             }
         }
-        // Consent checkbox (if present)
+        
         const consent = this.form.querySelector('input[name="consent"]');
         if (consent && !consent.checked) {
             const errorBox = this.form.querySelector('.form-error');
@@ -389,9 +397,7 @@ class MultiStepForm {
     
     submitForm() {
         const formData = new FormData(this.form);
-        const data = Object.fromEntries(formData);
         
-        // Show loading state
         const submitBtn = this.form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Submitting...';
@@ -434,26 +440,21 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const caregiverForm = document.getElementById('caregiver-form');
     if (caregiverForm) {
-        // File upload preview
         const fileInput = caregiverForm.querySelector('input[type="file"]');
         if (fileInput) {
             fileInput.addEventListener('change', function(e) {
                 const fileName = e.target.files[0]?.name;
-                const label = fileInput.closest('.file-upload').querySelector('.file-upload__text');
+                const label = fileInput.closest('.file-upload')?.querySelector('.file-upload__text');
                 if (label && fileName) {
                     label.textContent = fileName;
                 }
             });
         }
         
-        // Form submission
         caregiverForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = new FormData(caregiverForm);
-            const data = Object.fromEntries(formData);
-            
-            // Validate
             const requiredFields = caregiverForm.querySelectorAll('[required]');
             let isValid = true;
             
@@ -469,12 +470,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Show loading
             const submitBtn = caregiverForm.querySelector('button[type="submit"]');
             submitBtn.innerHTML = 'Submitting Application...';
             submitBtn.disabled = true;
             
-            // Simulate submission
             setTimeout(() => {
                 alert('Thank you for your application! Our hiring team will review your information and contact you within 3-5 business days.');
                 caregiverForm.reset();
