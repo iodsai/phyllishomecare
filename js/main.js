@@ -589,16 +589,24 @@
             togglePanel(!panel.classList.contains('chat-panel--open'));
         });
         
+        function clearChat() {
+            if (feed) {
+                while (feed.firstChild) {
+                    feed.removeChild(feed.firstChild);
+                }
+            }
+        }
+        
         on(closeBtn, 'click', function() {
             togglePanel(false);
-            // Clear chat messages on close
-            if (feed) feed.innerHTML = '';
+            clearChat();
         });
         
         // Close on Escape
         on(document, 'keydown', function(e) {
             if (e.key === 'Escape' && panel.classList.contains('chat-panel--open')) {
                 togglePanel(false);
+                clearChat();
             }
         });
         
