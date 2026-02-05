@@ -591,6 +591,8 @@
         
         on(closeBtn, 'click', function() {
             togglePanel(false);
+            // Clear chat messages on close
+            if (feed) feed.innerHTML = '';
         });
         
         // Close on Escape

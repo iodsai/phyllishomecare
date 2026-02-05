@@ -60,7 +60,8 @@ export default {
         body: JSON.stringify({
           model: env.OPENAI_MODEL || "gpt-4o-mini",
           temperature: 0.7,
-          max_tokens: 100,
+          max_tokens: 80,
+          stop: ["\n\n", "1.", "2.", "**"],
           messages
         })
       });
