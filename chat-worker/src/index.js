@@ -1,49 +1,153 @@
-const FALLBACK = 'Thanks for reaching out! Please call (302) 446-3986 or fill out our care form at phyllishomecare.com/intake.html to get started.';
+/**
+ * PHYLLIS HOME CARE - Chat Worker
+ * Hardened for high-traffic (thousands of concurrent users)
+ * 
+ * Features:
+ * - Rate limiting per IP
+ * - Request validation & sanitization
+ * - Timeout handling
+ * - Error boundaries
+ * - Abuse prevention
+ */
+
+const FALLBACK = 'Thanks for reaching out! Call (302) 446-3986 or click "Get Started" on our website for a free consultation.';
+
+// Rate limiting: max requests per IP per minute
+const RATE_LIMIT = 10;
+const RATE_WINDOW_MS = 60000;
+
+// In-memory rate limit store (resets on worker restart, but fine for basic protection)
+const rateLimitMap = new Map();
 
 function corsHeaders(origin) {
   return {
-    "Access-Control-Allow-Origin": origin || "*",
+    "Access-Control-Allow-Origin": origin || "",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY"
   };
 }
 
+// Rate limiter by IP
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  // Clean up old entries periodically (every 100th request)
+  if (Math.random() < 0.01) {
+    for (const [key, val] of rateLimitMap) {
+      if (now - val.timestamp > RATE_WINDOW_MS) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+  
+  if (!record || now - record.timestamp > RATE_WINDOW_MS) {
+    rateLimitMap.set(ip, { count: 1, timestamp: now });
+    return true;
+  }
+  
+  if (record.count >= RATE_LIMIT) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+}
+
+// Sanitize and validate message
+function sanitizeMessage(msg) {
+  if (typeof msg !== 'string') return null;
+  
+  // Trim and limit length
+  msg = msg.trim().substring(0, 500);
+  
+  // Remove potential XSS/injection
+  msg = msg.replace(/<[^>]*>/g, '');
+  
+  // Must have some content
+  if (msg.length < 1) return null;
+  
+  return msg;
+}
+
+// Validate origin
+function isAllowedOrigin(origin, allowedList) {
+  if (!origin || !allowedList || allowedList.length === 0) return false;
+  return allowedList.some(allowed => 
+    origin === allowed || 
+    origin === allowed.replace('https://', 'http://') ||
+    origin.endsWith(allowed.replace('https://', '.'))
+  );
+}
+
 export default {
-  async fetch(request, env) {
-    const allowed = safeParse(env.ALLOWED_ORIGINS) || [];
+  async fetch(request, env, ctx) {
+    const startTime = Date.now();
+    
+    // Get client IP for rate limiting
+    const clientIP = request.headers.get('CF-Connecting-IP') || 
+                     request.headers.get('X-Forwarded-For')?.split(',')[0] || 
+                     'unknown';
+    
+    // Parse allowed origins
+    const allowedOrigins = safeParse(env.ALLOWED_ORIGINS) || [];
     const origin = request.headers.get("Origin") || "";
-    const corsOrigin = allowed.includes(origin) ? origin : "";
+    const isAllowed = isAllowedOrigin(origin, allowedOrigins);
+    const corsOrigin = isAllowed ? origin : "";
 
+    // Handle CORS preflight
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders(corsOrigin) });
+      return new Response(null, { 
+        status: 204, 
+        headers: corsHeaders(corsOrigin) 
+      });
     }
 
+    // Only allow POST
     if (request.method !== "POST") {
-      return new Response(
-        JSON.stringify({ error: "Only POST allowed" }),
-        { status: 405, headers: corsHeaders(corsOrigin) }
-      );
+      return jsonResponse({ error: "Method not allowed" }, 405, corsOrigin);
     }
 
+    // Check origin (block requests from unauthorized domains)
+    if (!isAllowed && origin) {
+      return jsonResponse({ error: "Unauthorized origin" }, 403, corsOrigin);
+    }
+
+    // Rate limiting
+    if (!checkRateLimit(clientIP)) {
+      return jsonResponse({ 
+        reply: "You're sending messages too quickly. Please wait a moment and try again, or call (302) 446-3986." 
+      }, 429, corsOrigin);
+    }
+
+    // Parse request body with size limit
     let body;
     try {
-      body = await request.json();
+      const text = await request.text();
+      if (text.length > 2000) {
+        return jsonResponse({ error: "Request too large" }, 413, corsOrigin);
+      }
+      body = JSON.parse(text);
     } catch {
-      return new Response(
-        JSON.stringify({ error: "Invalid JSON" }),
-        { status: 400, headers: corsHeaders(corsOrigin) }
-      );
+      return jsonResponse({ error: "Invalid JSON" }, 400, corsOrigin);
     }
 
-    const { message } = body || {};
+    // Validate and sanitize message
+    const message = sanitizeMessage(body?.message);
     if (!message) {
-      return new Response(
-        JSON.stringify({ error: "Missing message" }),
-        { status: 400, headers: corsHeaders(corsOrigin) }
-      );
+      return jsonResponse({ error: "Invalid message" }, 400, corsOrigin);
     }
 
+    // Check for OpenAI API key
+    if (!env.OPENAI_API_KEY) {
+      console.error("Missing OPENAI_API_KEY");
+      return jsonResponse({ reply: FALLBACK }, 200, corsOrigin);
+    }
+
+    // Build system prompt
     const systemPrompt = `You are a helpful assistant for Phyllis Home Care, a non-medical in-home care company in Delaware.
 
 SERVICES WE OFFER:
@@ -56,57 +160,84 @@ SERVICES WE OFFER:
 
 CONTACT INFO:
 - Phone: (302) 446-3986
-- Care form: phyllishomecare.com/intake.html
+- Website: phyllishomecare.com (click "Get Started" or "Request a Free Consultation")
 
 STRICT RULES:
 1. Keep responses to exactly 2 sentences maximum.
 2. First sentence: Answer their question briefly.
-3. Second sentence: Always say "Call (302) 446-3986 or fill out our care form to get started!"
+3. Second sentence: Always say "Call (302) 446-3986 or click 'Get Started' on our website for a free consultation!"
 4. Never use bullet points, numbered lists, or any formatting.
 5. Never give detailed explanations or step-by-step instructions.
-6. Be warm and friendly but extremely concise.`;
+6. Be warm and friendly but extremely concise.
+7. Keep the first sentence under 20 words.
+8. If asked about pricing, say costs vary based on care needs and encourage them to call for a free assessment.
+9. Never discuss competitors or make medical recommendations.`;
 
+    // Call OpenAI with timeout
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
       const aiRes = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${env.OPENAI_API_KEY}`
+          "Authorization": `Bearer ${env.OPENAI_API_KEY}`
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini",
-          temperature: 0.7,
-          max_tokens: 100,
+          model: env.OPENAI_MODEL || "gpt-4o-mini",
+          temperature: 0.3,
+          max_tokens: 80,
           messages: [
             { role: "system", content: systemPrompt },
             { role: "user", content: message }
           ]
-        })
+        }),
+        signal: controller.signal
       });
 
-      if (!aiRes.ok) throw new Error("OpenAI error");
+      clearTimeout(timeoutId);
+
+      if (!aiRes.ok) {
+        const errorText = await aiRes.text();
+        console.error(`OpenAI error: ${aiRes.status} - ${errorText}`);
+        throw new Error("OpenAI API error");
+      }
 
       const data = await aiRes.json();
       let reply = data?.choices?.[0]?.message?.content || FALLBACK;
       
-      // Clean up the response - ensure it ends properly
+      // Clean up the response
       reply = cleanResponse(reply);
 
-      return new Response(
-        JSON.stringify({ reply }),
-        { headers: corsHeaders(corsOrigin) }
-      );
+      // Log response time for monitoring
+      const duration = Date.now() - startTime;
+      if (duration > 5000) {
+        console.warn(`Slow response: ${duration}ms`);
+      }
+
+      return jsonResponse({ reply }, 200, corsOrigin);
 
     } catch (err) {
-      return new Response(
-        JSON.stringify({ reply: FALLBACK }),
-        { status: 502, headers: corsHeaders(corsOrigin) }
-      );
+      if (err.name === 'AbortError') {
+        console.error("OpenAI request timed out");
+      } else {
+        console.error(`Chat error: ${err.message}`);
+      }
+      return jsonResponse({ reply: FALLBACK }, 200, corsOrigin);
     }
   }
 };
 
-// Ensure response ends with complete sentence
+// Helper: JSON response
+function jsonResponse(data, status, origin) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: corsHeaders(origin)
+  });
+}
+
+// Helper: Clean response to ensure complete sentences
 function cleanResponse(text) {
   if (!text) return FALLBACK;
   
@@ -115,32 +246,31 @@ function cleanResponse(text) {
   
   // Trim whitespace
   text = text.trim();
-  
-  // If response ends mid-sentence (no punctuation), add the CTA
-  if (text && !text.match(/[.!?]$/)) {
-    // Find last complete sentence
-    const lastPunctuation = Math.max(
-      text.lastIndexOf('.'),
-      text.lastIndexOf('!'),
-      text.lastIndexOf('?')
-    );
-    
-    if (lastPunctuation > 0) {
-      text = text.substring(0, lastPunctuation + 1);
-    } else {
-      // No complete sentence, use fallback
-      return FALLBACK;
-    }
+
+  // Split into sentences and keep at most two
+  var sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+  if (sentences.length === 0) {
+    return FALLBACK;
   }
+  sentences = sentences.slice(0, 2).map(function(sentence) {
+    var trimmed = sentence.trim();
+    if (!trimmed.match(/[.!?]$/)) {
+      trimmed += '.';
+    }
+    return trimmed;
+  });
+  text = sentences.join(' ');
   
-  // Ensure it ends with the CTA if it doesn't mention the phone number
+  // Ensure it ends with the CTA as the final sentence
   if (!text.includes('446-3986')) {
-    text += ' Call (302) 446-3986 or fill out our care form to get started!';
+    text = text.replace(/[.!?]+\s*$/, '.');
+    text = text + ' Call (302) 446-3986 or click "Get Started" for a free consultation!';
   }
   
   return text;
 }
 
+// Helper: Safe JSON parse
 function safeParse(str) {
   try { return JSON.parse(str); } catch { return null; }
 }
