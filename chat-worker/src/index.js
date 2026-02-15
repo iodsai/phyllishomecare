@@ -20,14 +20,20 @@ const RATE_WINDOW_MS = 60000;
 const rateLimitMap = new Map();
 
 function corsHeaders(origin) {
-  return {
-    "Access-Control-Allow-Origin": origin || "",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  const headers = {
     "Content-Type": "application/json",
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY"
   };
+  
+  // Only set CORS header if origin is allowed (standards-compliant)
+  if (origin) {
+    headers["Access-Control-Allow-Origin"] = origin;
+    headers["Access-Control-Allow-Headers"] = "Content-Type";
+    headers["Access-Control-Allow-Methods"] = "POST, OPTIONS";
+  }
+  
+  return headers;
 }
 
 // Rate limiter by IP
@@ -75,7 +81,19 @@ function sanitizeMessage(msg) {
 
 // Validate origin
 function isAllowedOrigin(origin, allowedList) {
-  if (!origin || !allowedList || allowedList.length === 0) return false;
+  if (!origin) return false;
+  
+  // If ALLOWED_ORIGINS is not configured, allow localhost for development
+  // In production, ALWAYS set ALLOWED_ORIGINS environment variable
+  if (!allowedList || allowedList.length === 0) {
+    console.warn("ALLOWED_ORIGINS not configured - allowing localhost only");
+    // Allow localhost for development/testing
+    if (origin.includes("localhost") || origin.includes("127.0.0.1")) {
+      return true;
+    }
+    return false; // Block all non-localhost without proper config
+  }
+  
   return allowedList.some(allowed => 
     origin === allowed || 
     origin === allowed.replace('https://', 'http://') ||

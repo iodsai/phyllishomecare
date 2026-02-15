@@ -1,63 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://phyllishomecare.com/</loc>
+    <loc>https://www.phyllishomecare.com/</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://phyllishomecare.com/services/</loc>
+    <loc>https://www.phyllishomecare.com/about/</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.phyllishomecare.com/services/</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://phyllishomecare.com/about/</loc>
+    <loc>https://www.phyllishomecare.com/how-it-works/</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://phyllishomecare.com/how-it-works/</loc>
-    <lastmod>2026-02-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://phyllishomecare.com/careers/</loc>
-    <lastmod>2026-02-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://phyllishomecare.com/contact/</loc>
-    <lastmod>2026-02-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://phyllishomecare.com/intake.html</loc>
+    <loc>https://www.phyllishomecare.com/careers/</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://phyllishomecare.com/apply.html</loc>
+    <loc>https://www.phyllishomecare.com/contact/</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.phyllishomecare.com/intake.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.phyllishomecare.com/apply.html</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://phyllishomecare.com/privacy.html</loc>
+    <loc>https://www.phyllishomecare.com/privacy.html</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://phyllishomecare.com/terms.html</loc>
+    <loc>https://www.phyllishomecare.com/terms.html</loc>
     <lastmod>2026-02-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- Location Pages -->
+  <url><loc>https://www.phyllishomecare.com/home-care-wilmington-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-newark-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/home-care-middletown-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/in-home-care-bear-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-new-castle-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/home-care-claymont-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-elsmere-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/home-care-hockessin-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-dover-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/in-home-care-smyrna-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/home-care-camden-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-harrington-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/in-home-care-milford-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/in-home-care-lewes-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-rehoboth-beach-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/home-care-georgetown-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/in-home-care-millsboro-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/senior-care-seaford-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/home-care-laurel-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.phyllishomecare.com/in-home-care-bridgeville-de/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

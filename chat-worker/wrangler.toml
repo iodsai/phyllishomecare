@@ -1,3 +1,6 @@
 name = "phyllis-chat"
 main = "src/index.js"
 compatibility_date = "2025-01-01"
+
+[vars]
+ALLOWED_ORIGINS = '["https://phyllishomecare.com","https://www.phyllishomecare.com"]'

@@ -44,3 +44,6 @@ temp/
 # Backup files
 *.bak
 *.backup
+
+# Build tools
+generate_locations.py
