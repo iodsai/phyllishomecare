@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Careers | Join Our Caregiving Team | Phyllis Home Care</title>
     <meta name="description" content="Become a Phyllis Home Care caregiver. Competitive pay, flexible schedules, and a supportive team. Apply today in Delaware.">
+    <meta name="chat-endpoint" content="https://phyllis-chat.phyllis-chat.workers.dev">
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
@@ -318,6 +319,26 @@
         <div id="cookie-notice" class="cookie-notice" role="dialog" aria-label="Cookie consent">
             <p class="cookie-notice__text">This website uses essential cookies to ensure proper functionality. By using this site, you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
             <button class="cookie-notice__button" data-cookie-dismiss>OK</button>
+        </div>
+    </div>
+
+    <button class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-label="Open chat">
+        <span class="chat-launcher__dot" aria-hidden="true"></span>
+        <span>Chat with us</span>
+    </button>
+    <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Chat with Phyllis Home Care" aria-hidden="true">
+        <div class="chat-panel__header">
+            <div class="chat-panel__title">Phyllis Home Care</div>
+            <button class="chat-panel__close" id="chat-close" aria-label="Close chat">Close</button>
+        </div>
+        <div class="chat-panel__body">
+            <div class="chat-messages" id="chat-messages" role="log" aria-live="polite"></div>
+            <div class="chat-input">
+                <label for="chat-input" class="sr-only">Type your message</label>
+                <textarea id="chat-input" placeholder="Type your question..." rows="2" maxlength="1000"></textarea>
+                <button id="chat-send" type="button">Send</button>
+            </div>
+            <div class="chat-status" id="chat-status" aria-live="polite"></div>
         </div>
     </div>
 </body>
