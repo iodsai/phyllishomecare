@@ -368,6 +368,26 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-primary);
 }
 
+.nav__contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.nav__email {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+.nav__email:hover {
+    color: var(--color-primary);
+}
+
 .nav__toggle {
     display: none;
     flex-direction: column;
@@ -403,7 +423,9 @@ h1, h2, h3, h4, h5, h6 {
         transform: translateX(0);
     }
     
-    .nav__phone {
+    .nav__phone,
+    .nav__email,
+    .nav__contact-info {
         display: none;
     }
     
