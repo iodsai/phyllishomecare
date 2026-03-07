@@ -66,15 +66,16 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-md);
-    color: rgba(255,255,255,0.85);
+    color: var(--color-text-light);
     font-size: 0.95rem;
 }
 
 .services-hero__meta div {
-    background: rgba(255,255,255,0.08);
+    background: rgba(45, 90, 74, 0.06);
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-full);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(45, 90, 74, 0.18);
+    color: var(--color-text);
 }
 
 .services-hero__note {
