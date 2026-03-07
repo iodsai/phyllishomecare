@@ -887,6 +887,117 @@
 }
 
 /* =====================================================
+   SERVICES HERO TRUST CARD
+   ===================================================== */
+
+.services-hero__trust-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-self: center;
+}
+
+.trust-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: rgba(45, 90, 74, 0.08);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    width: fit-content;
+}
+
+.trust-card__stats {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.trust-card__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 2px;
+}
+
+.trust-card__number {
+    font-family: var(--font-display);
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.trust-card__label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.trust-card__divider {
+    width: 1px;
+    height: 40px;
+    background: var(--color-border-light);
+    flex-shrink: 0;
+}
+
+.trust-card__quote {
+    background: var(--color-bg-warm);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-md) var(--space-lg);
+    margin: 0;
+}
+
+.trust-card__quote p {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+}
+
+.trust-card__quote footer {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.trust-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.trust-card__cta:hover {
+    gap: var(--space-md);
+    color: var(--color-primary-light);
+}
+
+@media (max-width: 1024px) {
+    .services-hero__trust-card {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+/* =====================================================
    FACEBOOK SOCIAL CARD
    ===================================================== */
 
