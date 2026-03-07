@@ -16,7 +16,13 @@ const FALLBACK = 'Thanks for reaching out! Call (302) 446-3986 or click "Get Sta
 const RATE_LIMIT = 10;
 const RATE_WINDOW_MS = 60000;
 
-// In-memory rate limit store (resets on worker restart, but fine for basic protection)
+// In-memory rate limit store.
+// NOTE: Cloudflare Workers runs in many V8 isolates globally. Each isolate has its
+// own rateLimitMap, so this is per-isolate enforcement, not globally distributed.
+// For global rate limiting at extreme scale, upgrade to Cloudflare KV or Durable Objects.
+// At home-care traffic volumes this per-isolate approach is sufficient; the client-side
+// rate limiter in main.js provides the first line of defense.
+const MAX_MAP_ENTRIES = 5000; // hard cap to prevent OOM under sustained load
 const rateLimitMap = new Map();
 
 function corsHeaders(origin) {
@@ -41,8 +47,8 @@ function checkRateLimit(ip) {
   const now = Date.now();
   const record = rateLimitMap.get(ip);
   
-  // Clean up old entries periodically (every 100th request)
-  if (Math.random() < 0.01) {
+  // Probabilistic cleanup: run on ~5% of requests to keep Map from growing unbounded
+  if (Math.random() < 0.05) {
     for (const [key, val] of rateLimitMap) {
       if (now - val.timestamp > RATE_WINDOW_MS) {
         rateLimitMap.delete(key);
@@ -51,14 +57,26 @@ function checkRateLimit(ip) {
   }
   
   if (!record || now - record.timestamp > RATE_WINDOW_MS) {
+    // Hard cap: if Map is full, evict all expired entries before inserting
+    if (rateLimitMap.size >= MAX_MAP_ENTRIES) {
+      for (const [key, val] of rateLimitMap) {
+        if (now - val.timestamp > RATE_WINDOW_MS) {
+          rateLimitMap.delete(key);
+        }
+      }
+      // If still full after cleanup, reject to protect memory
+      if (rateLimitMap.size >= MAX_MAP_ENTRIES) {
+        return false;
+      }
+    }
     rateLimitMap.set(ip, { count: 1, timestamp: now });
     return true;
   }
-  
+
   if (record.count >= RATE_LIMIT) {
     return false;
   }
-  
+
   record.count++;
   return true;
 }

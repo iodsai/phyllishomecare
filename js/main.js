@@ -40,25 +40,34 @@
     }
     
     // Rate limiter for form submissions AND chat messages
+    // Limits are per browser session (client-side enforcement layer)
+    // Server-side enforcement is handled by the Cloudflare Worker and Formspree
     var RateLimiter = {
         submissions: {},
-        maxSubmissions: 3,
+        // Per-key limits: forms = 3/min, chat = 5/min
+        limits: {
+            'contact-form': 3,
+            'careers-form': 3,
+            'chat': 5
+        },
+        defaultMax: 3,
         windowMs: 60000, // 1 minute
-        
-        canSubmit: function(formId) {
+
+        canSubmit: function(key) {
             var now = Date.now();
-            if (!this.submissions[formId]) {
-                this.submissions[formId] = [];
+            var max = this.limits[key] !== undefined ? this.limits[key] : this.defaultMax;
+            if (!this.submissions[key]) {
+                this.submissions[key] = [];
             }
-            // Clean old entries
-            this.submissions[formId] = this.submissions[formId].filter(function(time) {
+            // Evict expired entries
+            this.submissions[key] = this.submissions[key].filter(function(time) {
                 return now - time < this.windowMs;
             }.bind(this));
-            
-            if (this.submissions[formId].length >= this.maxSubmissions) {
+
+            if (this.submissions[key].length >= max) {
                 return false;
             }
-            this.submissions[formId].push(now);
+            this.submissions[key].push(now);
             return true;
         }
     };
@@ -616,7 +625,7 @@
             var message = sanitizeInput(textarea.value);
             if (!message) return;
             
-            // Rate limit chat: max 10 messages per minute
+            // Rate limit chat: max 5 messages per minute (client-side layer)
             if (!RateLimiter.canSubmit('chat')) {
                 setStatus('Slow down — please wait a moment before sending another message.');
                 setTimeout(function() { setStatus(''); }, 3000);

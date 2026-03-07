@@ -32,8 +32,12 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c07a1b1dac8c4518901e3ebe5208269e"}'></script>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/intake.css">
+    <link rel="preload" href="/css/style.css?v=20260307" as="style">
+    <link rel="preload" href="/css/intake.css?v=20260307" as="style">
+    <link rel="preload" href="/js/main.js?v=20260307" as="script">
+    <link rel="preload" href="/js/intake.js?v=20260307" as="script">
+    <link rel="stylesheet" href="/css/style.css?v=20260307">
+    <link rel="stylesheet" href="/css/intake.css?v=20260307">
 </head>
 <body>
     <!-- Header -->
@@ -566,8 +570,8 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="js/main.js" defer></script>
-    <script src="js/intake.js" defer></script>
+    <script src="/js/main.js?v=20260307" defer></script>
+    <script src="/js/intake.js?v=20260307" defer></script>
 
     <!-- Cookie Notice -->
     <div class="container cookie-wrapper">
