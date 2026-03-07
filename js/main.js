@@ -39,7 +39,7 @@
         };
     }
     
-    // Rate limiter for form submissions
+    // Rate limiter for form submissions AND chat messages
     var RateLimiter = {
         submissions: {},
         maxSubmissions: 3,
@@ -615,6 +615,13 @@
             
             var message = sanitizeInput(textarea.value);
             if (!message) return;
+            
+            // Rate limit chat: max 10 messages per minute
+            if (!RateLimiter.canSubmit('chat')) {
+                setStatus('Slow down — please wait a moment before sending another message.');
+                setTimeout(function() { setStatus(''); }, 3000);
+                return;
+            }
             
             appendMessage(message, 'user');
             textarea.value = '';
