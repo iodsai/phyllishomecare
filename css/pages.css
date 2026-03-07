@@ -885,3 +885,102 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* =====================================================
+   FACEBOOK SOCIAL CARD
+   ===================================================== */
+
+.facebook-card {
+    margin: var(--space-xl) auto var(--space-xl);
+    max-width: 560px;
+}
+
+.facebook-card__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: linear-gradient(135deg, #1877F2 0%, #0e5fd8 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-xl);
+    box-shadow: 0 8px 24px rgba(24, 119, 242, 0.35);
+    flex-wrap: wrap;
+}
+
+.facebook-card__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.facebook-card__content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.facebook-card__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.facebook-card__handle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.facebook-card__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: #ffffff;
+    color: #1877F2;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.facebook-card__btn:hover {
+    background: #e8f0fe;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Footer Facebook social icon */
+.social-link--facebook:hover {
+    background: #1877F2 !important;
+    color: #ffffff !important;
+}
+
+@media (max-width: 480px) {
+    .facebook-card__inner {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-lg);
+    }
+
+    .facebook-card__content {
+        align-items: center;
+    }
+
+    .facebook-card__handle {
+        white-space: normal;
+    }
+}
